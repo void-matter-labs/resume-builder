@@ -75,6 +75,9 @@ importers:
       '@eslint/js':
         specifier: ^9.19.0
         version: 9.20.0
+      '@resume/icons':
+        specifier: workspace:*
+        version: link:../resume-ui-icons
       '@resume/tailwind':
         specifier: workspace:*
         version: link:../tailwind

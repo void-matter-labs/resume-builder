@@ -17,7 +17,15 @@ const button = tv({
       shrink: 'hover:scale-95',
     },
     hasIcons: {
-      true: 'flex items-center  gap-4',
+      true: 'flex items-center',
+    },
+    gap: {
+      0: 'gap-0',
+      1: 'gap-1',
+      2: 'gap-2',
+      3: 'gap-3',
+      4: 'gap-4',
+      5: 'gap-5',
     },
     ejectPadding: {
       true: 'p-0',
@@ -26,6 +34,7 @@ const button = tv({
     },
     themeColor: {
       primary: '',
+      primaryStep: 'bg-primary-step',
       secondary: '',
     },
     variant: {
@@ -109,6 +118,7 @@ export default function Button<T extends ElementType = 'button'>(
     children,
     hoverEffect,
     distribution,
+    gap,
     ...props
   }:ButtonProps<T>
 ){
@@ -123,7 +133,8 @@ export default function Button<T extends ElementType = 'button'>(
       hoverEffect,
       hasIcons: !!(startIcon || endIcon),
       fullWidth,
-      distribution
+      distribution,
+      gap
     })}
     {...props}
   >

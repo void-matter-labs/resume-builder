@@ -1,1 +1,5 @@
 export { default as Button } from './button'
+export { default as LabeledTextInput } from './labeled-text-input'
+export { default as TextInput } from './text-input'
+export { default as Sidebar } from './sidebar'
+export { default as DefaultSideBarIcon } from './sidebar/DefaultIcon'

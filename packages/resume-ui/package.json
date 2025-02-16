@@ -10,6 +10,18 @@
     },
     "./button": {
       "import": "./src/button/index.tsx"
+    },
+    "./text-input": {
+      "import": "./src/text-input/index.tsx"
+    },
+    "./labeled-text-input": {
+      "import": "./src/labeled-text-input/index.tsx"
+    },
+    "./sidebar": {
+      "import": "./src/sidebar/index.tsx"
+    },
+    "./sidebar/default-icon": {
+      "import": "./src/sidebar/DefaultIcon.tsx"
     }
   },
   "scripts": {
@@ -23,6 +35,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@resume/icons": "workspace:*",
     "@chromatic-com/storybook": "^3.2.4",
     "@eslint/js": "^9.19.0",
     "@resume/tailwind": "workspace:*",

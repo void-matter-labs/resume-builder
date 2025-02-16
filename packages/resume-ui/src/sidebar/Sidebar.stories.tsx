@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react';
 import Sidebar from '.';
 import Button from '../button';
 
-import "./styles.css";
+import { PersonIcon, PersonWithEditIcon } from '@resume/icons';
 
 const meta = {
   title: 'Atoms/Sidebar',
@@ -26,22 +26,40 @@ type Story = StoryObj<typeof meta>;
 //@ts-expect-error
 const delayTime = typeof require === 'undefined' ? 250 : 0
 
+const sidebarData = [
+  {
+    label: 'Personal Information',
+    Icon: PersonIcon,
+  },
+  {
+    label: 'Experience',
+    Icon: PersonWithEditIcon
+  }
+]
+
 export const Default: Story = {
   args: {
-    className: 'sidebar',
     controlId: 'sidebar',
-    controlIcon: '📚',
-    collapsedWidth: '3.5rem',
-    expandedWidth: '18rem',
+    collapsedWidth: '6rem',
+    expandedWidth: 'min(20rem, 100vw)',
     initialOpen: false,
-    children: <Button
+    time: '0.5s',
+    children: sidebarData.map(({
+      Icon,
+      label
+    }, index)=><Button
+      key={label}
+      ejectPadding
+      className='py-5'
       fullWidth
-      themeColor='primary'
+      startIcon={<span className='px-10'>
+        <Icon />
+      </span>}
+      themeColor={!index? 'primaryStep': undefined}
       variant='solid'
-      startIcon={<span>👋</span>}
     >
-      Text that is very long and should trimed on close
-    </Button>,
+      {label}
+    </Button>),
   }
 };
 

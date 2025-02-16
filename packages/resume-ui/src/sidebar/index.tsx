@@ -2,6 +2,8 @@ import { PolymorphicProps } from "@resume/utility-types";
 import { ElementType, LabelHTMLAttributes, ReactNode } from "react";
 import Button from "../button";
 
+import "./styles.css";
+import DefaultIcon from "./DefaultIcon";
 
 export interface SidebarOwnProps {
   controlId: string;
@@ -10,6 +12,7 @@ export interface SidebarOwnProps {
   controlIcon?: ReactNode;
   initialOpen?: boolean;
   controlLabelProps?: LabelHTMLAttributes<HTMLLabelElement>;
+  time?: string;
 }
 
 export default function Sidebar<T extends ElementType = 'aside'>(
@@ -19,9 +22,10 @@ export default function Sidebar<T extends ElementType = 'aside'>(
     controlId,
     expandedWidth = '100vw',
     collapsedWidth = '4rem',
-    controlIcon,
+    controlIcon = <DefaultIcon width={'2.2rem'} height={'2.2rem'} />,
     initialOpen,
     controlLabelProps,
+    time = '0.3s',
     ...props
   }: PolymorphicProps<T, SidebarOwnProps>
 ){
@@ -41,6 +45,7 @@ export default function Sidebar<T extends ElementType = 'aside'>(
         // @ts-ignore
         '--expanded-width': expandedWidth,
         '--collapsed-width': collapsedWidth,
+        '--time': time
       }}
       className="sidebar-outer-container"
     >
