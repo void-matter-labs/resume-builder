@@ -7,7 +7,7 @@ export const Page = () => {
   })
 
   const action = () => {
-    navigate({ to: '/contact-information' })
+    navigate({ to: '/contact-info' })
   }
 
   return <main>

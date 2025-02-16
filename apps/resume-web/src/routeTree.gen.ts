@@ -22,9 +22,7 @@ const TechnicalSkillsIndexLazyImport = createFileRoute('/technical-skills/')()
 const PersonalInfoIndexLazyImport = createFileRoute('/personal-info/')()
 const ExperienceIndexLazyImport = createFileRoute('/experience/')()
 const EducationIndexLazyImport = createFileRoute('/education/')()
-const ContactInformationIndexLazyImport = createFileRoute(
-  '/contact-information/',
-)()
+const ContactInfoIndexLazyImport = createFileRoute('/contact-info/')()
 const CertificationIndexLazyImport = createFileRoute('/certification/')()
 
 // Create/Update Routes
@@ -67,14 +65,13 @@ const EducationIndexLazyRoute = EducationIndexLazyImport.update({
   import('./routes/education/index.lazy').then((d) => d.Route),
 )
 
-const ContactInformationIndexLazyRoute =
-  ContactInformationIndexLazyImport.update({
-    id: '/contact-information/',
-    path: '/contact-information/',
-    getParentRoute: () => rootRoute,
-  } as any).lazy(() =>
-    import('./routes/contact-information/index.lazy').then((d) => d.Route),
-  )
+const ContactInfoIndexLazyRoute = ContactInfoIndexLazyImport.update({
+  id: '/contact-info/',
+  path: '/contact-info/',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/contact-info/index.lazy').then((d) => d.Route),
+)
 
 const CertificationIndexLazyRoute = CertificationIndexLazyImport.update({
   id: '/certification/',
@@ -115,11 +112,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CertificationIndexLazyImport
       parentRoute: typeof rootRoute
     }
-    '/contact-information/': {
-      id: '/contact-information/'
-      path: '/contact-information'
-      fullPath: '/contact-information'
-      preLoaderRoute: typeof ContactInformationIndexLazyImport
+    '/contact-info/': {
+      id: '/contact-info/'
+      path: '/contact-info'
+      fullPath: '/contact-info'
+      preLoaderRoute: typeof ContactInfoIndexLazyImport
       parentRoute: typeof rootRoute
     }
     '/education/': {
@@ -159,7 +156,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/pdf': typeof PdfIndexRoute
   '/certification': typeof CertificationIndexLazyRoute
-  '/contact-information': typeof ContactInformationIndexLazyRoute
+  '/contact-info': typeof ContactInfoIndexLazyRoute
   '/education': typeof EducationIndexLazyRoute
   '/experience': typeof ExperienceIndexLazyRoute
   '/personal-info': typeof PersonalInfoIndexLazyRoute
@@ -170,7 +167,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/pdf': typeof PdfIndexRoute
   '/certification': typeof CertificationIndexLazyRoute
-  '/contact-information': typeof ContactInformationIndexLazyRoute
+  '/contact-info': typeof ContactInfoIndexLazyRoute
   '/education': typeof EducationIndexLazyRoute
   '/experience': typeof ExperienceIndexLazyRoute
   '/personal-info': typeof PersonalInfoIndexLazyRoute
@@ -182,7 +179,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/pdf/': typeof PdfIndexRoute
   '/certification/': typeof CertificationIndexLazyRoute
-  '/contact-information/': typeof ContactInformationIndexLazyRoute
+  '/contact-info/': typeof ContactInfoIndexLazyRoute
   '/education/': typeof EducationIndexLazyRoute
   '/experience/': typeof ExperienceIndexLazyRoute
   '/personal-info/': typeof PersonalInfoIndexLazyRoute
@@ -195,7 +192,7 @@ export interface FileRouteTypes {
     | '/'
     | '/pdf'
     | '/certification'
-    | '/contact-information'
+    | '/contact-info'
     | '/education'
     | '/experience'
     | '/personal-info'
@@ -205,7 +202,7 @@ export interface FileRouteTypes {
     | '/'
     | '/pdf'
     | '/certification'
-    | '/contact-information'
+    | '/contact-info'
     | '/education'
     | '/experience'
     | '/personal-info'
@@ -215,7 +212,7 @@ export interface FileRouteTypes {
     | '/'
     | '/pdf/'
     | '/certification/'
-    | '/contact-information/'
+    | '/contact-info/'
     | '/education/'
     | '/experience/'
     | '/personal-info/'
@@ -227,7 +224,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   PdfIndexRoute: typeof PdfIndexRoute
   CertificationIndexLazyRoute: typeof CertificationIndexLazyRoute
-  ContactInformationIndexLazyRoute: typeof ContactInformationIndexLazyRoute
+  ContactInfoIndexLazyRoute: typeof ContactInfoIndexLazyRoute
   EducationIndexLazyRoute: typeof EducationIndexLazyRoute
   ExperienceIndexLazyRoute: typeof ExperienceIndexLazyRoute
   PersonalInfoIndexLazyRoute: typeof PersonalInfoIndexLazyRoute
@@ -238,7 +235,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   PdfIndexRoute: PdfIndexRoute,
   CertificationIndexLazyRoute: CertificationIndexLazyRoute,
-  ContactInformationIndexLazyRoute: ContactInformationIndexLazyRoute,
+  ContactInfoIndexLazyRoute: ContactInfoIndexLazyRoute,
   EducationIndexLazyRoute: EducationIndexLazyRoute,
   ExperienceIndexLazyRoute: ExperienceIndexLazyRoute,
   PersonalInfoIndexLazyRoute: PersonalInfoIndexLazyRoute,
@@ -258,7 +255,7 @@ export const routeTree = rootRoute
         "/",
         "/pdf/",
         "/certification/",
-        "/contact-information/",
+        "/contact-info/",
         "/education/",
         "/experience/",
         "/personal-info/",
@@ -274,8 +271,8 @@ export const routeTree = rootRoute
     "/certification/": {
       "filePath": "certification/index.lazy.tsx"
     },
-    "/contact-information/": {
-      "filePath": "contact-information/index.lazy.tsx"
+    "/contact-info/": {
+      "filePath": "contact-info/index.lazy.tsx"
     },
     "/education/": {
       "filePath": "education/index.lazy.tsx"

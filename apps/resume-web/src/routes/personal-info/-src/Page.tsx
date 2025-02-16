@@ -6,14 +6,14 @@ import { CacheContext, CacheKeys } from '@providers/globalCache';
 import { useStep } from '@signals/progress';
 
 
-export const Page = ()=>{
+export const Page = () => {
   const navigate = useNavigate({
     from: '/personal-info'
   });
   const setStep = useStep()
   const cache = use(CacheContext)
 
-  const action = async (data: FormData)=>{
+  const action = async (data: FormData) => {
     const parsedData: PersonalInfo = {
       defaultFullName: String(data.get('full-name')),
       defaultAddress: String(data.get('address')),
@@ -29,10 +29,10 @@ export const Page = ()=>{
 
     setStep(CacheKeys.PersonalInfo)
 
-    await navigate({to: '/pdf'})
+    await navigate({ to: '/experience' })
   }
 
   return <main>
-    <Form action={action} {...cache.getElement<any>(CacheKeys.PersonalInfo)?.toJSON()}/>
+    <Form action={action} {...cache.getElement<any>(CacheKeys.PersonalInfo)?.toJSON()} />
   </main>
 }
