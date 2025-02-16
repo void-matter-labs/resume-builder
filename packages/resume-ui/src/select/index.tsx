@@ -69,7 +69,7 @@ export default function Select({
                 {...props}
             />
             {endIcon && <span className="absolute right-4 top-1/2 transform -translate-y-1/2">{endIcon}</span>}
-            <ul className={`absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10 transition-opacity duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+            <ul className={`absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10 transition-opacity duration-200 max-h-[10.5rem] overflow-y-auto ${isOpen ? 'opacity-100' : ' opacity-0'}`}>
                 {options.map(option => (
                     <li
                         key={option.value}
