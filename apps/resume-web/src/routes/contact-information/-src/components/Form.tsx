@@ -1,7 +1,8 @@
-import { Button, LabeledTextInput } from "@resume/ui"
 import { ComponentProps } from "react"
 import { useFormStatus } from "react-dom"
+import { Button, LabeledTextInput } from "@resume/ui"
 
+import FormWrapper from "@components/FormWrapper";
 
 const FormButton = () => {
   const {
@@ -12,26 +13,10 @@ const FormButton = () => {
   </Button>
 }
 
-export interface PersonalInfo { }
+export type ContacInfotFormProps = ComponentProps<'form'>;
 
-export type PersonalInfoFormProps = PersonalInfo & ComponentProps<'form'>;
-
-export const Form = (props: Readonly<PersonalInfoFormProps>) => {
-  return <form
-    {...props}
-    className={[
-      'relative',
-      'pt-5',
-      'flex',
-      'flex-col',
-      'px-6',
-      'gap-4',
-      'shrink-0',
-      'left-[4rem]',
-      'w-[calc(100vw-4rem)]',
-      props.className ?? ''
-    ].join(' ')}
-  >
+export const Form = (props: Readonly<ContacInfotFormProps>) => {
+  return <FormWrapper {...props}>
     <LabeledTextInput
       label="Phone Number"
       inputId='phone-number'
@@ -63,5 +48,5 @@ export const Form = (props: Readonly<PersonalInfoFormProps>) => {
       name="portfolio-link"
     />
     <FormButton />
-  </form>
+  </FormWrapper>
 }

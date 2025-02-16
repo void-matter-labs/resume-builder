@@ -48,10 +48,10 @@ export default function NativeSelect<T extends ElementType = 'select'>({
   bordered,
   ...props
 }: NoPolymorphicProps<T, Readonly<NativeSelectOwnProps>>) {
-  const classResolved = nativeSelect({ className, size, bordered })
+  const resolvedClassName = nativeSelect({ className, size, bordered })
 
   return (
-    <select className={classResolved} {...props}>
+    <select className={resolvedClassName} {...props}>
       {/* TODO: create a Option component, Just receive a children */}
       <option disabled value="" selected hidden>Select</option>
       {

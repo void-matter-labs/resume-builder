@@ -1,4 +1,5 @@
-import { Button, LabeledTextInput, LabledNativeSelect } from "@resume/ui"
+import FormWrapper from "@components/FormWrapper";
+import { Button, LabledNativeSelect } from "@resume/ui"
 import { ComponentProps } from "react"
 import { useFormStatus } from "react-dom"
 
@@ -12,41 +13,17 @@ const FormButton = () => {
   </Button>
 }
 
-export interface TechnicalSkills { }
+export interface TechnicalSkills {
+  skills: {
+    value: string;
+    label: string;
+  }[]
+}
 
 export type TechnicalSkillsFormProps = TechnicalSkills & ComponentProps<'form'>;
 
-const options = [
-  {
-    label: 'React',
-    value: 'react'
-  },
-  {
-    label: 'Vue',
-    value: 'vue'
-  },
-  {
-    label: "Angular",
-    value: 'angular'
-  }
-]
-
-export const Form = (props: Readonly<TechnicalSkillsFormProps>) => {
-  return <form
-    {...props}
-    className={[
-      'relative',
-      'pt-5',
-      'flex',
-      'flex-col',
-      'px-6',
-      'gap-4',
-      'shrink-0',
-      'left-[4rem]',
-      'w-[calc(100vw-4rem)]',
-      props.className ?? ''
-    ].join(' ')}
-  >
+export const Form = ({ skills, ...props }: Readonly<TechnicalSkillsFormProps>) => {
+  return <FormWrapper {...props}>
     {Array.from({ length: 5 }).map((_, i) => (
       <LabledNativeSelect
         key={i}
@@ -54,12 +31,12 @@ export const Form = (props: Readonly<TechnicalSkillsFormProps>) => {
         selectId={`skill-${i + 1}`}
         name={`skill-${i + 1}`}
         selectProps={{
-          options,
+          options: skills,
           bordered: true,
           size: "lg"
         }}
       />
     ))}
     <FormButton />
-  </form>
+  </FormWrapper>
 }
