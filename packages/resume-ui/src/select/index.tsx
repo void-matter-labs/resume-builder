@@ -1,6 +1,7 @@
 import { ComponentPropsWithData } from "@resume/utility-types";
 import { ReactNode, useState } from "react";
 import { tv, VariantProps } from "tailwind-variants";
+import { useClickAway } from "@resume/hooks"
 
 export interface SelectOption {
     value: string;
@@ -48,6 +49,7 @@ export default function Select({
 }: Readonly<SelectProps>) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<SelectOption | null>(null);
+    const ref = useClickAway<HTMLDivElement>(() => setIsOpen(false)); 
 
     const handleSelect = (option: SelectOption) => {
         setSelectedOption(option);
@@ -55,7 +57,7 @@ export default function Select({
     };
 
     return (
-        <div className="relative">
+        <div className="relative" ref={ref}>
             {label && forId && <label htmlFor={forId} className="block mb-2">{label}</label>}
             <input
                 id={forId}
@@ -67,27 +69,25 @@ export default function Select({
                 {...props}
             />
             {endIcon && <span className="absolute right-4 top-1/2 transform -translate-y-1/2">{endIcon}</span>}
-            {isOpen && (
-                <ul className="absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10">
-                    {options.map(option => (
-                        <li
-                            key={option.value}
-                        >
-                            <label className={`flex items-center p-4 ${selectedOption?.value === option.value ? 'bg-primary text-white cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer'}`}>
-                                <input
-                                    type="radio"
-                                    name="select-option"
-                                    value={option.value}
-                                    checked={selectedOption?.value === option.value}
-                                    onChange={() => handleSelect(option)}
-                                    className="mr-2 appearance-none"
-                                />
-                                {option.label}
-                            </label>
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <ul className={`absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10 transition-opacity duration-300 ${isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'}`}>
+                {options.map(option => (
+                    <li
+                        key={option.value}
+                    >
+                        <label className={`flex items-center p-4 ${selectedOption?.value === option.value ? 'bg-primary text-white cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer'}`}>
+                            <input
+                                type="radio"
+                                name="select-option"
+                                value={option.value}
+                                checked={selectedOption?.value === option.value}
+                                onChange={() => handleSelect(option)}
+                                className="mr-2 appearance-none"
+                            />
+                            {option.label}
+                        </label>
+                    </li>
+                ))}
+            </ul>
         </div>
     );
 }
