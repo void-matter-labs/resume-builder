@@ -1,5 +1,7 @@
-import { Button, LabeledTextInput } from "@resume/ui"
+import { ArrowDown } from "@resume/icons"
+import { Button, LabeledTextInput, Select } from "@resume/ui"
 import { ComponentProps } from "react"
+import { selectMonths, selectYears } from "../data/educationSelectData"
 
 export const Form = (props: ComponentProps<'form'>) => {
     return (
@@ -48,18 +50,8 @@ export const Form = (props: ComponentProps<'form'>) => {
                 inputId='graduation'
                 name="graduation"
             />
-            <LabeledTextInput
-                label="Graduation Month"
-                placeholder='MM'
-                inputId='graduation-month'
-                name="graduation-month"
-            />
-            <LabeledTextInput
-                label="Graduation Year"
-                placeholder='YYYY'
-                inputId='graduation-year'
-                name="graduation-year"
-            />
+            <Select label="Graduation Month" placeholder="MM" forId="gradutation-month" options={selectMonths} endIcon={<ArrowDown />}/>
+            <Select label="Graduation Year" placeholder="YY" forId="gradutation-year" options={selectYears} endIcon={<ArrowDown />}/>
             <Button className='py-6' themeColor='primary' variant='solid'>
                 Next
             </Button>

@@ -1,5 +1,5 @@
 import { ComponentPropsWithData } from "@resume/utility-types";
-import { ReactNode, useState } from "react";
+import { MouseEvent, ReactNode, useState } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 import { useClickAway } from "@resume/hooks"
 
@@ -28,7 +28,7 @@ export const select = tv({
         hasIcon: {
             false: 'border-solid border',
             undefined: 'border-solid border',
-            true: 'border-none outline-none p-0 pl-2 pr-8'
+            true: 'border-solid border outline-none '
         },
         isOpen: {
             true: 'border-primary',
@@ -56,6 +56,10 @@ export default function Select({
         setIsOpen(false);
     };
 
+    const handleInputClick = (e: MouseEvent<HTMLInputElement,MouseEvent>) => {
+        setIsOpen((prev) => !prev);
+    }
+
     return (
         <div className="relative" ref={ref}>
             {label && forId && <label htmlFor={forId} className="block mb-2">{label}</label>}
@@ -65,11 +69,11 @@ export default function Select({
                 value={selectedOption ? selectedOption.label : ''}
                 placeholder={placeholder}
                 className={`${className ?? ''} ${base} ${classNameResolver({ className, hasIcon: !!endIcon, isOpen })}`}
-                onClick={() => setIsOpen(!isOpen)}
+                onClick={handleInputClick}
                 {...props}
             />
-            {endIcon && <span className="absolute right-4 top-1/2 transform -translate-y-1/2">{endIcon}</span>}
-            <ul className={`absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10 transition-opacity duration-200 max-h-[10.5rem] overflow-y-auto ${isOpen ? 'opacity-100' : ' opacity-0'}`}>
+            {endIcon && <span className="absolute right-4 bottom-3 transform -translate-y-1/2">{endIcon}</span>}
+            <ul className={`absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10 transition-opacity duration-200 max-h-[10.5rem] overflow-y-auto ${isOpen ? 'opacity-100' : ' opacity-0 pointer-events-none'}`}>
                 {options.map(option => (
                     <li
                         key={option.value}
