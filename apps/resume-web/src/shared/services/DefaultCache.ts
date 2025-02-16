@@ -9,6 +9,15 @@ export class DefaultCache<CacheKeys extends string>
   extends Map<CacheKeys,CacheConfig<any>>
   implements Cache<CacheKeys>
 {
+  dehydrate(): Record<CacheKeys, any> {
+    const dehydrated = {} as Record<CacheKeys, any>;
+
+    for(const [key, config] of this){
+      dehydrated[key] = config.element.toJSON();
+    }
+
+    return dehydrated;
+  }
   getElement<T>(key: CacheKeys): CacheElement<T> | undefined {
     return this.get(key)?.element
   }

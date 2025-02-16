@@ -50,6 +50,7 @@ export const Form = ({
   <LabeledTextInput
     label="Full Name"
     inputId='full-name'
+    placeholder="John Doe"
     name="full-name"
     defaultValue={defaultFullName}
   />

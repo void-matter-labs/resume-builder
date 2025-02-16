@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as PdfIndexImport } from './routes/pdf/index'
 
 // Create Virtual Routes
 
@@ -44,6 +45,12 @@ const ExperienceIndexLazyRoute = ExperienceIndexLazyImport.update({
   import('./routes/experience/index.lazy').then((d) => d.Route),
 )
 
+const PdfIndexRoute = PdfIndexImport.update({
+  id: '/pdf/',
+  path: '/pdf/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -53,6 +60,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/pdf/': {
+      id: '/pdf/'
+      path: '/pdf'
+      fullPath: '/pdf'
+      preLoaderRoute: typeof PdfIndexImport
       parentRoute: typeof rootRoute
     }
     '/experience/': {
@@ -76,12 +90,14 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/pdf': typeof PdfIndexRoute
   '/experience': typeof ExperienceIndexLazyRoute
   '/personal-info': typeof PersonalInfoIndexLazyRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/pdf': typeof PdfIndexRoute
   '/experience': typeof ExperienceIndexLazyRoute
   '/personal-info': typeof PersonalInfoIndexLazyRoute
 }
@@ -89,27 +105,30 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/pdf/': typeof PdfIndexRoute
   '/experience/': typeof ExperienceIndexLazyRoute
   '/personal-info/': typeof PersonalInfoIndexLazyRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/experience' | '/personal-info'
+  fullPaths: '/' | '/pdf' | '/experience' | '/personal-info'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/experience' | '/personal-info'
-  id: '__root__' | '/' | '/experience/' | '/personal-info/'
+  to: '/' | '/pdf' | '/experience' | '/personal-info'
+  id: '__root__' | '/' | '/pdf/' | '/experience/' | '/personal-info/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PdfIndexRoute: typeof PdfIndexRoute
   ExperienceIndexLazyRoute: typeof ExperienceIndexLazyRoute
   PersonalInfoIndexLazyRoute: typeof PersonalInfoIndexLazyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PdfIndexRoute: PdfIndexRoute,
   ExperienceIndexLazyRoute: ExperienceIndexLazyRoute,
   PersonalInfoIndexLazyRoute: PersonalInfoIndexLazyRoute,
 }
@@ -125,12 +144,16 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/pdf/",
         "/experience/",
         "/personal-info/"
       ]
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/pdf/": {
+      "filePath": "pdf/index.tsx"
     },
     "/experience/": {
       "filePath": "experience/index.lazy.tsx"

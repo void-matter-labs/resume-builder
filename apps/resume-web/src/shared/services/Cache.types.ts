@@ -2,6 +2,7 @@ export interface Cache<CacheKeys extends string> {
   getElement<T>(key: CacheKeys): CacheElement<T> | undefined;
   setElement<T>(key: CacheKeys, element: CacheElement<T>): void;
   getObserver(key: CacheKeys): CacheObserver | undefined;
+  dehydrate(): Record<CacheKeys, any>;
 }
 
 
