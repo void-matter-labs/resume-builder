@@ -22,6 +22,9 @@
     },
     "./sidebar/default-icon": {
       "import": "./src/sidebar/DefaultIcon.tsx"
+    },
+    "./native-select": {
+      "import": "./src/native-select/index.tsx"
     }
   },
   "scripts": {
