@@ -25,6 +25,9 @@
     },
     "./native-select": {
       "import": "./src/native-select/index.tsx"
+    },
+    "./labeled-native-select": {
+      "import": "./src/labeled-native-select/index.tsx"
     }
   },
   "scripts": {

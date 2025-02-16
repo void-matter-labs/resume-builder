@@ -53,6 +53,7 @@ export default function NativeSelect<T extends ElementType = 'select'>({
   return (
     <select className={classResolved} {...props}>
       {/* TODO: create a Option component, Just receive a children */}
+      <option disabled value="" selected hidden>Select</option>
       {
         options.map(option => (
           <option key={option.value} value={option.value}>{option.label}</option>
