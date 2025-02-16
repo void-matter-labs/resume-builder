@@ -1,6 +1,6 @@
 import { createSyncSignal } from "@resume/hooks"
 
-interface StepsState
+export interface StepsState
   {
     stepsCompleted: Set<string>,
     progress: number,

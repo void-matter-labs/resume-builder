@@ -29,7 +29,7 @@ export const Page = ()=>{
 
     setStep(CacheKeys.PersonalInfo)
 
-    await navigate({to: '/experience'})
+    await navigate({to: '/pdf'})
   }
 
   return <main>

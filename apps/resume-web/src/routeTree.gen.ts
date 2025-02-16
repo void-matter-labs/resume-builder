@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as IndexImport } from './routes/index'
+import { Route as PdfIndexImport } from './routes/pdf/index'
 
 // Create Virtual Routes
 
@@ -83,6 +84,12 @@ const CertificationIndexLazyRoute = CertificationIndexLazyImport.update({
   import('./routes/certification/index.lazy').then((d) => d.Route),
 )
 
+const PdfIndexRoute = PdfIndexImport.update({
+  id: '/pdf/',
+  path: '/pdf/',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -92,6 +99,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/pdf/': {
+      id: '/pdf/'
+      path: '/pdf'
+      fullPath: '/pdf'
+      preLoaderRoute: typeof PdfIndexImport
       parentRoute: typeof rootRoute
     }
     '/certification/': {
@@ -143,6 +157,7 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/pdf': typeof PdfIndexRoute
   '/certification': typeof CertificationIndexLazyRoute
   '/contact-information': typeof ContactInformationIndexLazyRoute
   '/education': typeof EducationIndexLazyRoute
@@ -153,6 +168,7 @@ export interface FileRoutesByFullPath {
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/pdf': typeof PdfIndexRoute
   '/certification': typeof CertificationIndexLazyRoute
   '/contact-information': typeof ContactInformationIndexLazyRoute
   '/education': typeof EducationIndexLazyRoute
@@ -164,6 +180,7 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
+  '/pdf/': typeof PdfIndexRoute
   '/certification/': typeof CertificationIndexLazyRoute
   '/contact-information/': typeof ContactInformationIndexLazyRoute
   '/education/': typeof EducationIndexLazyRoute
@@ -176,6 +193,7 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/pdf'
     | '/certification'
     | '/contact-information'
     | '/education'
@@ -185,6 +203,7 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/pdf'
     | '/certification'
     | '/contact-information'
     | '/education'
@@ -194,6 +213,7 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/pdf/'
     | '/certification/'
     | '/contact-information/'
     | '/education/'
@@ -205,6 +225,7 @@ export interface FileRouteTypes {
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  PdfIndexRoute: typeof PdfIndexRoute
   CertificationIndexLazyRoute: typeof CertificationIndexLazyRoute
   ContactInformationIndexLazyRoute: typeof ContactInformationIndexLazyRoute
   EducationIndexLazyRoute: typeof EducationIndexLazyRoute
@@ -215,6 +236,7 @@ export interface RootRouteChildren {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  PdfIndexRoute: PdfIndexRoute,
   CertificationIndexLazyRoute: CertificationIndexLazyRoute,
   ContactInformationIndexLazyRoute: ContactInformationIndexLazyRoute,
   EducationIndexLazyRoute: EducationIndexLazyRoute,
@@ -234,6 +256,7 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
+        "/pdf/",
         "/certification/",
         "/contact-information/",
         "/education/",
@@ -244,6 +267,9 @@ export const routeTree = rootRoute
     },
     "/": {
       "filePath": "index.tsx"
+    },
+    "/pdf/": {
+      "filePath": "pdf/index.tsx"
     },
     "/certification/": {
       "filePath": "certification/index.lazy.tsx"
