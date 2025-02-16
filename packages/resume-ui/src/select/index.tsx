@@ -72,10 +72,19 @@ export default function Select({
                     {options.map(option => (
                         <li
                             key={option.value}
-                            className="p-4 hover:bg-primary hover:text-white cursor-pointer"
-                            onClick={() => handleSelect(option)}
+                            className="hover:bg-primary hover:text-white cursor-pointer"
                         >
-                            {option.label}
+                            <label className="flex items-center p-4">
+                                <input
+                                    type="radio"
+                                    name="select-option"
+                                    value={option.value}
+                                    checked={selectedOption?.value === option.value}
+                                    onChange={() => handleSelect(option)}
+                                    className="mr-2 appearance-none"
+                                />
+                                {option.label}
+                            </label>
                         </li>
                     ))}
                 </ul>
