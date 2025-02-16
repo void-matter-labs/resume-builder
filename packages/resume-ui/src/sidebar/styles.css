@@ -1,0 +1,13 @@
+.sidebar-outer-check:checked + .sidebar-outer-container {
+  width: var(--expanded-width);
+}
+
+.sidebar-outer-container{
+  width: var(--collapsed-width);
+  transition: width 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.sidebar-inner-container {
+  width: var(--expanded-width);
+}

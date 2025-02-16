@@ -9,12 +9,15 @@ import { ElementType, ReactNode } from 'react'
 const button = tv({
   base: 'rounded-sm font-semibold cursor-pointer transition-all duration-200 ease-in-out',
   variants: {
+    fullWidth: {
+      true: 'w-full',
+    },
     hoverEffect: {
       grow: 'hover:scale-105',
       shrink: 'hover:scale-95',
     },
     hasIcons: {
-      true: 'flex items-center justify-center space-x-2',
+      true: 'flex items-center  gap-4',
     },
     ejectPadding: {
       true: 'p-0',
@@ -28,6 +31,14 @@ const button = tv({
     variant: {
       outline: 'border-solid ',
       solid: '',
+    },
+    distribution: {
+      spaceBetween: 'justify-between',
+      spaceAround: 'justify-around',
+      spaceEvenly: 'justify-evenly',
+      center: 'justify-center',
+      start: 'justify-start',
+      end: 'justify-end',
     }
   },
   compoundVariants: [
@@ -94,8 +105,10 @@ export default function Button<T extends ElementType = 'button'>(
     variant,
     startIcon,
     endIcon,
+    fullWidth,
     children,
     hoverEffect,
+    distribution,
     ...props
   }:ButtonProps<T>
 ){
@@ -108,7 +121,9 @@ export default function Button<T extends ElementType = 'button'>(
       ejectPadding,
       variant,
       hoverEffect,
-      hasIcons: !!(startIcon || endIcon)
+      hasIcons: !!(startIcon || endIcon),
+      fullWidth,
+      distribution
     })}
     {...props}
   >
