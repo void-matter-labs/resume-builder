@@ -13,6 +13,7 @@ export interface SidebarOwnProps {
   initialOpen?: boolean;
   controlLabelProps?: LabelHTMLAttributes<HTMLLabelElement>;
   time?: string;
+  sidebarInnerContainerProps?: React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>;
 }
 
 export default function Sidebar<T extends ElementType = 'aside'>(
@@ -22,10 +23,11 @@ export default function Sidebar<T extends ElementType = 'aside'>(
     controlId,
     expandedWidth = '100vw',
     collapsedWidth = '4rem',
-    controlIcon = <DefaultIcon width={'2.2rem'} height={'2.2rem'} />,
+    controlIcon = <DefaultIcon width={'1.2rem'} height={'1.2rem'} />,
     initialOpen,
     controlLabelProps,
     time = '0.3s',
+    sidebarInnerContainerProps,
     ...props
   }: PolymorphicProps<T, SidebarOwnProps>
 ){
@@ -60,7 +62,10 @@ export default function Sidebar<T extends ElementType = 'aside'>(
           {controlIcon}
         </Button>
       </div>
-      <div className="sidebar-inner-container">
+      <div
+        {...sidebarInnerContainerProps}
+        className={`sidebar-inner-container ${sidebarInnerContainerProps?.className ?? ''}`}
+      >
         {children}
       </div>
     </div>
