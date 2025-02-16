@@ -17,8 +17,6 @@ declare module '@tanstack/react-router' {
   }
 }
 
-console.log("erefersshssh")
-
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <RouterProvider router={router}  />

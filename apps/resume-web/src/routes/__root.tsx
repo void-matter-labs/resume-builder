@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { StepSidebar } from '@components/StepSidebar'
-import { DefaultCache } from '../shared/services/DefaultCache'
-import { CacheContext, CacheKeys } from '../shared/provider/globalCache'
-import { DefaultCacheElement } from '../shared/services/DefaultCacheElement'
+import { DefaultCache } from '@services/DefaultCache'
+import { CacheContext, CacheKeys } from '@providers/globalCache'
+import { DefaultCacheElement } from '@services/DefaultCacheElement'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -16,7 +16,6 @@ function RootComponent() {
       element: new DefaultCacheElement()
     }]]
   ))
-  console.log('asdasdasdasdasasasdasdasdasdasdasdasdasd')
 
   return (
     <CacheContext value={cache}>

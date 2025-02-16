@@ -2,8 +2,8 @@ import { useNavigate } from '@tanstack/react-router';
 import { Form, PersonalInfo } from './components/Form';
 import { wait } from '@utils/wait';
 import { use } from 'react';
-import { CacheContext, CacheKeys } from '../../../shared/provider/globalCache';
-import { useStep } from '../../../shared/signals/progress';
+import { CacheContext, CacheKeys } from '@providers/globalCache';
+import { useStep } from '@signals/progress';
 
 
 export const Page = ()=>{
@@ -22,8 +22,6 @@ export const Page = ()=>{
       defaultProfession: String(data.get('profession')),
       defaultState: String(data.get('state')),
     }
-
-
 
     cache.getElement(CacheKeys.PersonalInfo)?.fromData(parsedData)
 

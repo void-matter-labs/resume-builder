@@ -1,7 +1,7 @@
+import { MouseEvent, useCallback, useState } from "react"
 import { PersonIcon, PersonWithEditIcon } from "@resume/icons"
 import { Button, Sidebar } from "@resume/ui"
 import { useLocation, useNavigate } from "@tanstack/react-router"
-import { MouseEvent, useCallback, useState } from "react"
 import { ProgressBar } from "./ProgressBar"
 
 const sideBarButtons = [
@@ -38,10 +38,10 @@ export const StepSidebar = () => {
   // TODO: try to use useSyncExternalStore
   const { pathname } = useLocation();
 
-  const handleClick = useCallback((event: MouseEvent<HTMLElement>)=>{
+  const handleClick = useCallback(async (event: MouseEvent<HTMLElement>)=>{
     const { navigateTo } = event.currentTarget.dataset
 
-    navigate({
+    await navigate({
       to: navigateTo
     })
   }, [])
