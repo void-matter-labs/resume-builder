@@ -5,8 +5,7 @@ import { tv, VariantProps } from "tailwind-variants";
 
 export interface TextInputProps extends
   ComponentPropsWithData<'input'>,
-  Omit<VariantProps<typeof textInput> , 'hasIcons'>
-{
+  Omit<VariantProps<typeof textInput>, 'hasIcons'> {
   startIcon?: ReactNode;
   endIcon?: ReactNode;
   classNameResolver?: typeof textInput;
@@ -33,10 +32,10 @@ export default function TextInput({
   wrapperProps,
   classNameResolver = textInput,
   ...props
-}: Readonly<TextInputProps>){
+}: Readonly<TextInputProps>) {
   const hasIcons = !!(startIcon || endIcon);
 
-  if(hasIcons){
+  if (hasIcons) {
     return <div
       {...wrapperProps}
       className={`${className ?? wrapperProps?.className ?? ''} ${base} border flex`}
@@ -45,7 +44,7 @@ export default function TextInput({
       <input
         type="text"
         {...props}
-        className={classNameResolver({className:"text-inner-input", hasIcons})}
+        className={classNameResolver({ className: "text-inner-input", hasIcons })}
       />
       {endIcon}
     </div>
@@ -54,6 +53,6 @@ export default function TextInput({
   return <input
     type="text"
     {...props}
-    className={classNameResolver({className, hasIcons})}
+    className={classNameResolver({ className, hasIcons })}
   />
 }

@@ -7,10 +7,10 @@ export const Page = () => {
   })
 
   const action = () => {
-    navigate({ to: '/certification' })
+    navigate({ to: '/contact-information' })
   }
 
   return <main>
-    <Form action={ action } />
+    <Form action={action} />
   </main>
 }

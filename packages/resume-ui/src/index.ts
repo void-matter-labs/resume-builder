@@ -5,3 +5,6 @@ export { default as Sidebar } from './sidebar'
 export { default as DefaultSideBarIcon } from './sidebar/DefaultIcon'
 export { default as Select } from './select'
 export { type SelectOption} from './select'
+
+export { default as NativeSelect } from './native-select'
+export { default as LabledNativeSelect } from './labeled-native-select'

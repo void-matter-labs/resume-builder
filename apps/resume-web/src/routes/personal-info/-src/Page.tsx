@@ -1,17 +1,38 @@
 import { useNavigate } from '@tanstack/react-router';
-import { Form } from './components/Form';
+import { Form, PersonalInfo } from './components/Form';
+import { wait } from '@utils/wait';
+import { use } from 'react';
+import { CacheContext, CacheKeys } from '@providers/globalCache';
+import { useStep } from '@signals/progress';
 
 
 export const Page = ()=>{
   const navigate = useNavigate({
     from: '/personal-info'
   });
+  const setStep = useStep()
+  const cache = use(CacheContext)
 
-  const action = ()=>{
-    navigate({to: '/experience'})
+  const action = async (data: FormData)=>{
+    const parsedData: PersonalInfo = {
+      defaultFullName: String(data.get('full-name')),
+      defaultAddress: String(data.get('address')),
+      defaultCity: String(data.get('city')),
+      defaultEmail: String(data.get('email')),
+      defaultProfession: String(data.get('profession')),
+      defaultState: String(data.get('state')),
+    }
+
+    cache.getElement(CacheKeys.PersonalInfo)?.fromData(parsedData)
+
+    await wait(1000)
+
+    setStep(CacheKeys.PersonalInfo)
+
+    await navigate({to: '/pdf'})
   }
 
   return <main>
-    <Form action={action} />
+    <Form action={action} {...cache.getElement<any>(CacheKeys.PersonalInfo)?.toJSON()}/>
   </main>
 }
