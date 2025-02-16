@@ -9,6 +9,7 @@ export interface LabeledTextInputOwnProps  {
   inputId?: string;
   placeholder?: string;
   name?: string;
+  defaultValue?: string;
 }
 
 export default function LabeledTextInput<T extends ElementType = 'div'>({
@@ -19,6 +20,7 @@ export default function LabeledTextInput<T extends ElementType = 'div'>({
   className,
   inputId,
   placeholder,
+  defaultValue,
   name,
   ...props
 }: PolymorphicProps<T, Readonly<LabeledTextInputOwnProps>>){
@@ -40,6 +42,7 @@ export default function LabeledTextInput<T extends ElementType = 'div'>({
       id={inputProps?.id ?? inputId}
       placeholder={inputProps?.placeholder ?? placeholder}
       name={inputProps?.name ?? name}
+      defaultValue={inputProps?.defaultValue ?? defaultValue}
     />
   </Component>
 }

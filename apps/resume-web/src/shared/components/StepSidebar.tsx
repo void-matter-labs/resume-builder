@@ -1,7 +1,27 @@
+import { MouseEvent, useCallback, useState } from "react"
 import { PersonIcon, PersonWithEditIcon } from "@resume/icons"
 import { Button, Sidebar } from "@resume/ui"
-import { useLocation } from "@tanstack/react-router"
-import { useState } from "react"
+import { useLocation, useNavigate } from "@tanstack/react-router"
+import { ProgressBar } from "./ProgressBar"
+
+const sideBarButtons = [
+  {
+    label: 'Personal Info',
+    Icon: PersonIcon,
+    navigateTo: '/personal-info'
+  },
+  {
+    label: "Experience",
+    Icon: PersonWithEditIcon,
+    navigateTo: '/experience'
+  },
+  {
+    label: "Technical Skills",
+    Icon: PersonIcon,
+    navigateTo: '/technical-skills'
+  }
+]
+
 
 
 export const StepSidebar = () => {
@@ -11,24 +31,20 @@ export const StepSidebar = () => {
     'technical-skills': 2
   }))
 
-  const [sideBarButtons] = useState(()=>[
-    {
-      label: 'Personal Info',
-      Icon: PersonIcon,
-    },
-    {
-      label: "Experience",
-      Icon: PersonWithEditIcon
-    },
-    {
-      label: "Technical Skills",
-      Icon: PersonIcon
-    }
-  ])
+  const navigate = useNavigate({
+  })
 
   // This seems to be a useEffect and a state update,
   // TODO: try to use useSyncExternalStore
   const { pathname } = useLocation();
+
+  const handleClick = useCallback(async (event: MouseEvent<HTMLElement>)=>{
+    const { navigateTo } = event.currentTarget.dataset
+
+    await navigate({
+      to: navigateTo
+    })
+  }, [])
 
   return <Sidebar
     sidebarInnerContainerProps={{
@@ -40,8 +56,11 @@ export const StepSidebar = () => {
     {
       sideBarButtons.map(({
         Icon,
-        label
+        label,
+        navigateTo
       }, index) => <Button
+        data-navigate-to={navigateTo}
+        onClick={handleClick}
         ejectPadding
         fullWidth
         themeColor={steps[pathname.substring(1)] === index ? 'primaryStep' : undefined}
@@ -54,5 +73,6 @@ export const StepSidebar = () => {
           {label}
         </Button>)
     }
+    <ProgressBar />
   </Sidebar>
 }
