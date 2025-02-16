@@ -12,7 +12,7 @@ export type ComponentPropsWithData<T extends ElementType> = ComponentProps<T>
   & DataProps;
 
 export type ComponentPropsWithoutRefWithData<T extends ElementType> = ComponentPropsWithoutRef<T>
-  &  DataProps;
+  & DataProps;
 
 export type PolymorphicProps<T extends ElementType, OwnProps> = PolymorphicBaseProps<T>
   & OwnProps
@@ -21,3 +21,8 @@ export type PolymorphicProps<T extends ElementType, OwnProps> = PolymorphicBaseP
     ref?: Ref<T>;
     className?: string;
   };
+
+export type NoPolymorphicProps<T extends ElementType, OwnProps> = OwnProps & ComponentPropsWithoutRefWithData<T> & {
+  ref?: Ref<T>;
+  className?: string;
+};;
