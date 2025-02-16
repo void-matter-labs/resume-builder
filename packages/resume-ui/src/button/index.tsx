@@ -7,7 +7,15 @@ import { type PolymorphicProps } from '@resume/utility-types'
 import { ElementType, ReactNode } from 'react'
 
 const button = tv({
-  base: 'rounded-sm font-semibold cursor-pointer transition-all duration-200 ease-in-out',
+  base: [
+    'rounded-sm',
+    'font-semibold',
+    'cursor-pointer',
+    'transition-all',
+    'duration-200',
+    'ease-in-out',
+    'disabled:bg-gray-300',
+  ],
   variants: {
     fullWidth: {
       true: 'w-full',
