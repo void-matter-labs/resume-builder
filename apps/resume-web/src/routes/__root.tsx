@@ -1,6 +1,9 @@
-import * as React from 'react'
+import { useState } from 'react'
 import { Outlet, createRootRoute } from '@tanstack/react-router'
 import { StepSidebar } from '@components/StepSidebar'
+import { DefaultCache } from '../shared/services/DefaultCache'
+import { CacheContext, CacheKeys } from '../shared/provider/globalCache'
+import { DefaultCacheElement } from '../shared/services/DefaultCacheElement'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -8,10 +11,17 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
+  const [cache] = useState(()=> new DefaultCache<CacheKeys>(
+    [[CacheKeys.PersonalInfo, {
+      element: new DefaultCacheElement()
+    }]]
+  ))
+  console.log('asdasdasdasdasasasdasdasdasdasdasdasdasd')
+
   return (
-    <React.Fragment>
+    <CacheContext value={cache}>
       <StepSidebar />
       <Outlet />
-    </React.Fragment>
+    </CacheContext>
   )
 }
