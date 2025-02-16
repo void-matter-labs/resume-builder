@@ -1,4 +1,4 @@
-import { PersonIcon, PersonWithEditIcon } from "@resume/icons"
+import { Certification, Contact, Education, PersonIcon, PersonWithEditIcon, TechnicalSkills } from "@resume/icons"
 import { Button, Sidebar } from "@resume/ui"
 import { useLocation } from "@tanstack/react-router"
 import { useState } from "react"
@@ -8,7 +8,10 @@ export const StepSidebar = () => {
   const [ steps ] = useState<Record<string, number>>(()=>( {
     'personal-info': 0,
     'experience': 1,
-    'technical-skills': 2
+    'technical-skills': 2,
+    'education':3,
+    'contact':4,
+    'certification':5,
   }))
 
   const [sideBarButtons] = useState(()=>[
@@ -22,7 +25,19 @@ export const StepSidebar = () => {
     },
     {
       label: "Technical Skills",
-      Icon: PersonIcon
+      Icon: TechnicalSkills
+    },
+    {
+      label: "Education",
+      Icon: Education
+    },
+    {
+      label: 'Contact Information',
+      Icon: Contact
+    },
+    {
+      label: "Certification",
+      Icon: Certification
     }
   ])
 
