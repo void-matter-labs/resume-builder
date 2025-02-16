@@ -72,9 +72,8 @@ export default function Select({
                     {options.map(option => (
                         <li
                             key={option.value}
-                            className="hover:bg-primary hover:text-white cursor-pointer"
                         >
-                            <label className="flex items-center p-4">
+                            <label className={`flex items-center p-4 ${selectedOption?.value === option.value ? 'bg-primary text-white cursor-not-allowed' : 'hover:bg-primary hover:text-white cursor-pointer'}`}>
                                 <input
                                     type="radio"
                                     name="select-option"
