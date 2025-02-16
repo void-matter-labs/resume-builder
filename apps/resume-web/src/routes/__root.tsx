@@ -11,10 +11,18 @@ export const Route = createRootRoute({
 })
 
 function RootComponent() {
-  const [cache] = useState(()=> new DefaultCache<CacheKeys>(
-    [[CacheKeys.PersonalInfo, {
-      element: new DefaultCacheElement()
-    }]]
+  const [cache] = useState(() => new DefaultCache<CacheKeys>(
+    [
+      [CacheKeys.PersonalInfo, {
+        element: new DefaultCacheElement()
+      }],
+      [CacheKeys.TechnicalSkills, {
+        element: new DefaultCacheElement()
+      }],
+      [CacheKeys.ContactInfo, {
+        element: new DefaultCacheElement()
+      }],
+    ]
   ))
 
   return (

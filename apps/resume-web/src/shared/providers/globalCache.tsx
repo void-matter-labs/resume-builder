@@ -6,7 +6,7 @@ export const enum CacheKeys {
   PersonalInfo = 'personal-info',
   Experience = 'experience',
   Education = 'education',
-  Skills = 'skills',
+  TechnicalSkills = 'technical-skills',
   Projects = 'projects',
   ContactInfo = 'contact-info',
 }

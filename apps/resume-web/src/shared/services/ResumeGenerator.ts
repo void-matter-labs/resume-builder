@@ -22,7 +22,7 @@ interface ResumeGeneratorData {
     startDate: string;
     endDate: string;
   }[],
-  [CacheKeys.Skills]: string[],
+  [CacheKeys.TechnicalSkills]: string[],
   [CacheKeys.Projects]: {
     name: string;
     description: string;

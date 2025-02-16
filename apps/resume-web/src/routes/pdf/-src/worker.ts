@@ -8,7 +8,7 @@ interface DehydratedCacheData {
 
 self.addEventListener('message', async (event) => {
   const message = event.data.action
-  if(message !== 'create-docx')
+  if (message !== 'create-docx')
     return;
 
   const cacheData: DehydratedCacheData | null = event.data.cacheData;

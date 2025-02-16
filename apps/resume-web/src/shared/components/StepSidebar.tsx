@@ -19,21 +19,34 @@ const sideBarButtons = [
   },
   {
     label: "Technical Skills",
-    Icon: PersonIcon,
+    Icon: TechnicalSkills,
     navigateTo: '/technical-skills'
+  },
+  {
+    label: "Education",
+    Icon: Education,
+    navigateTo: '/education'
+  },
+  {
+    label: "Contact Information",
+    Icon: Contact,
+    navigateTo: '/contact-info'
+  },
+  {
+    label: "Certification",
+    Icon: Certification,
+    navigateTo: '/certification'
   }
 ]
 
-
-
 export const StepSidebar = () => {
-  const [ steps ] = useState<Record<string, number>>(()=>( {
+  const [steps] = useState<Record<string, number>>(() => ({
     'personal-info': 0,
     'experience': 1,
     'technical-skills': 2,
-    'education':3,
-    'contact':4,
-    'certification':5,
+    'education': 3,
+    'contact-info': 4,
+    'certification': 5,
   }))
 
 
@@ -44,7 +57,7 @@ export const StepSidebar = () => {
   // TODO: try to use useSyncExternalStore
   const { pathname } = useLocation();
 
-  const handleClick = useCallback(async (event: MouseEvent<HTMLElement>)=>{
+  const handleClick = useCallback(async (event: MouseEvent<HTMLElement>) => {
     const { navigateTo } = event.currentTarget.dataset
 
     await navigate({

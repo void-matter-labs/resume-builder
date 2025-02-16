@@ -13,30 +13,41 @@ const FormButton = () => {
   </Button>
 }
 
+export interface Skill {
+  value: string;
+  label: string;
+}
+
 export interface TechnicalSkills {
-  skills: {
-    value: string;
-    label: string;
-  }[]
+  skills: Skill[]
+  selectedSkills: Record<string, string>
 }
 
 export type TechnicalSkillsFormProps = TechnicalSkills & ComponentProps<'form'>;
 
-export const Form = ({ skills, ...props }: Readonly<TechnicalSkillsFormProps>) => {
-  return <FormWrapper {...props}>
-    {Array.from({ length: 5 }).map((_, i) => (
-      <LabledNativeSelect
-        key={i}
-        label={`Skill ${i + 1}`}
-        selectId={`skill-${i + 1}`}
-        name={`skill-${i + 1}`}
-        selectProps={{
-          options: skills,
-          bordered: true,
-          size: "lg"
-        }}
-      />
-    ))}
-    <FormButton />
-  </FormWrapper>
+// TODO: Rethink design maybe only use text fields
+export const Form = ({ skills, selectedSkills, ...props }: Readonly<TechnicalSkillsFormProps>) => {
+  return (
+    <FormWrapper {...props}>
+      {Array.from({ length: 5 }).map((_, i) => {
+        const selectedSkill = selectedSkills?.[`skill-${i + 1}`]
+
+        return (
+          <LabledNativeSelect
+            key={i}
+            label={`Skill ${i + 1}`}
+            selectId={`skill-${i + 1}`}
+            name={`skill-${i + 1}`}
+            selectProps={{
+              options: skills,
+              bordered: true,
+              defaultValue: selectedSkill,
+              size: "lg"
+            }}
+          />
+        )
+      })}
+      <FormButton />
+    </FormWrapper>
+  )
 }
