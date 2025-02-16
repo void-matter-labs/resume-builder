@@ -1,5 +1,7 @@
+import { Certification, Contact, Education, PersonIcon, PersonWithEditIcon, TechnicalSkills } from "@resume/icons"
+
 import { MouseEvent, useCallback, useState } from "react"
-import { PersonIcon, PersonWithEditIcon } from "@resume/icons"
+
 import { Button, Sidebar } from "@resume/ui"
 import { useLocation, useNavigate } from "@tanstack/react-router"
 import { ProgressBar } from "./ProgressBar"
@@ -28,8 +30,12 @@ export const StepSidebar = () => {
   const [ steps ] = useState<Record<string, number>>(()=>( {
     'personal-info': 0,
     'experience': 1,
-    'technical-skills': 2
+    'technical-skills': 2,
+    'education':3,
+    'contact':4,
+    'certification':5,
   }))
+
 
   const navigate = useNavigate({
   })
