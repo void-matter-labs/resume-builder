@@ -4,6 +4,7 @@ export { default as TextInput } from './text-input'
 export { default as Sidebar } from './sidebar'
 export { default as DefaultSideBarIcon } from './sidebar/DefaultIcon'
 export { default as Select } from './select'
+export { default as CheckBox } from './checkbox'
 export { type SelectOption} from './select'
 
 export { default as NativeSelect } from './native-select'
