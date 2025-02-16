@@ -1,0 +1,10 @@
+@theme {
+  --color-primary: #EB5757;
+  --color-primary-step: rgb(235, 87, 87, 0.2);
+  --color-primary-hover: #EF5788;
+  --color-subtitle: #4E4D4D;
+  --color-title: #404653;
+  --color-secondary: #0073E6;
+  --color-body: #404653;
+  --color-placeholder: rgb(110,110,110, 0.5)
+}

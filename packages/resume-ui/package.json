@@ -1,0 +1,72 @@
+{
+  "name": "@resume/ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": {
+      "import": "./src/index.ts"
+    },
+    "./button": {
+      "import": "./src/button/index.tsx"
+    },
+    "./text-input": {
+      "import": "./src/text-input/index.tsx"
+    },
+    "./labeled-text-input": {
+      "import": "./src/labeled-text-input/index.tsx"
+    },
+    "./sidebar": {
+      "import": "./src/sidebar/index.tsx"
+    },
+    "./sidebar/default-icon": {
+      "import": "./src/sidebar/DefaultIcon.tsx"
+    }
+  },
+  "scripts": {
+    "dev": "storybook dev -p 6006 --ci -h localhost",
+    "lint": "eslint .",
+    "build-storybook": "storybook build"
+  },
+  "peerDependencies": {
+    "tailwind-variants": "^0.3.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@resume/icons": "workspace:*",
+    "@chromatic-com/storybook": "^3.2.4",
+    "@eslint/js": "^9.19.0",
+    "@resume/tailwind": "workspace:*",
+    "@storybook/addon-essentials": "^8.5.6",
+    "@storybook/addon-interactions": "^8.5.6",
+    "@storybook/addon-onboarding": "^8.5.6",
+    "@storybook/blocks": "^8.5.6",
+    "@storybook/react": "^8.5.6",
+    "@storybook/react-vite": "^8.5.6",
+    "@storybook/test": "^8.5.6",
+    "@tailwindcss/vite": "^4.0.6",
+    "@types/react": "^19.0.8",
+    "@types/react-dom": "^19.0.3",
+    "@vitejs/plugin-react-swc": "^3.5.0",
+    "eslint": "^9.19.0",
+    "eslint-plugin-react-hooks": "^5.0.0",
+    "eslint-plugin-react-refresh": "^0.4.18",
+    "eslint-plugin-storybook": "^0.11.3",
+    "globals": "^15.14.0",
+    "jsdom": "^26.0.0",
+    "storybook": "^8.5.6",
+    "tailwindcss": "^4.0.6",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.22.0",
+    "vite": "^6.1.0",
+    "vitest": "^3.0.5",
+    "@resume/utility-types": "workspace:*"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
+  }
+}
