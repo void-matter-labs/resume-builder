@@ -2,7 +2,7 @@ import { use, useEffect, useRef, useState } from 'react'
 import { Button } from '@resume/ui'
 import { createFileRoute } from '@tanstack/react-router'
 import { CacheContext, CacheKeys } from '@providers/globalCache'
-import { DownloadIcon } from '@resume/icons'
+import { Download } from '@resume/icons'
 import { Cache } from '@services/Cache.types'
 
 const worker = new Worker(new URL('./-src/worker.ts', import.meta.url), { type: 'module' })
@@ -87,7 +87,7 @@ function RouteComponent() {
         onClick={handleClick}
         themeColor='primary'
         variant='solid'
-        endIcon={<DownloadIcon />}
+        endIcon={<Download />}
       >
         Download
       </Button>
