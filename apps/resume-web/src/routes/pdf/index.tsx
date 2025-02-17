@@ -14,15 +14,15 @@ function RouteComponent() {
   const anchorRef = useRef<HTMLAnchorElement | null>(null);
   const cache = use(CacheContext)
 
-  useEffect(()=>{
+  useEffect(() => {
     worker.onmessage = (event) => {
-      if(event.type !== 'message'){
+      if (event.type !== 'message') {
         return
       }
 
       setHasFinished(event.data.hasFinished)
 
-      if(!anchorRef.current){
+      if (!anchorRef.current) {
         return
       }
 
