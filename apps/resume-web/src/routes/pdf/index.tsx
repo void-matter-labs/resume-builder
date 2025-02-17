@@ -14,29 +14,29 @@ export const Route = createFileRoute('/pdf/')({
 // TODO: Rethink, each section have to manage its validations
 function isCacheComplete(cache: Cache<CacheKeys>): boolean {
   const cacheData = cache.dehydrate();
-  const personalInfo = cacheData[CacheKeys.PersonalInfo];
-  const education = cacheData[CacheKeys.Education];
-  const experience = cacheData[CacheKeys.Experience];
-  const technicalSkills = cacheData[CacheKeys.TechnicalSkills];
-  const contactInfo = cacheData[CacheKeys.ContactInfo];
+  const requiredKeys = [
+    [CacheKeys.PersonalInfo, 'name'],
+    [CacheKeys.PersonalInfo, 'address'],
+    [CacheKeys.PersonalInfo, 'city'],
+    [CacheKeys.PersonalInfo, 'email'],
+    [CacheKeys.PersonalInfo, 'profession'],
+    [CacheKeys.PersonalInfo, 'state'],
+    [CacheKeys.Education],
+    [CacheKeys.Experience],
+    [CacheKeys.TechnicalSkills, 'skillList'],
+    [CacheKeys.ContactInfo, 'phoneNumber'],
+    [CacheKeys.ContactInfo, 'linkedInProfile'],
+    [CacheKeys.ContactInfo, 'twitterProfile'],
+    [CacheKeys.ContactInfo, 'githubProfile'],
+    [CacheKeys.ContactInfo, 'portfolioLink']
+  ];
 
-  return Boolean(
-    personalInfo?.name &&
-    personalInfo?.address &&
-    personalInfo?.city &&
-    personalInfo?.email &&
-    personalInfo?.profession &&
-    personalInfo?.state &&
-    education?.length &&
-    experience?.length &&
-    technicalSkills?.skillList?.length &&
-    contactInfo?.phoneNumber &&
-    contactInfo?.linkedInProfile &&
-    contactInfo?.twitterProfile &&
-    contactInfo?.githubProfile &&
-    contactInfo?.portfolioLink
-  );
+  return requiredKeys.every(([key, subKey]) => {
+    const value = cacheData[key as CacheKeys];
+    return subKey ? value?.[subKey] : value?.length;
+  });
 }
+
 
 
 function RouteComponent() {
