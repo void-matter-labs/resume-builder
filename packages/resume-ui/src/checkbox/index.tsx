@@ -7,6 +7,7 @@ export interface CheckboxProps extends
     Omit<VariantProps<typeof checkbox>, 'size'> {
     label?: ReactNode;
     size?: 'sm' | 'md' | 'lg';
+    type?: 'checkbox' | 'radio';
 }
 
 const base = 'border-placeholder rounded-sm cursor-pointer';
@@ -27,12 +28,13 @@ export default function Checkbox({
     size = 'md',
     className,
     classNameResolver = checkbox,
+    type = 'checkbox',
     ...props
 }: Readonly<CheckboxProps>) {
     return (
         <label className="flex items-center gap-3 relative">
             <input
-            type="checkbox"
+            type={type}
             className={`${classNameResolver({ className, size })} peer border border-solid transition-all`}
             {...props}
             />
