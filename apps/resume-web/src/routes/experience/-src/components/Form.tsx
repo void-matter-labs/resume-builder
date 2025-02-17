@@ -1,4 +1,4 @@
-import { Button, CheckBox, LabeledTextInput, Select } from "@resume/ui"
+import { Button, CheckBox, LabeledTextInput } from "@resume/ui"
 import { ComponentProps } from "react"
 
 export const Form = (props: ComponentProps<'form'>) => {
@@ -58,7 +58,7 @@ export const Form = (props: ComponentProps<'form'>) => {
           className='w-[50%]'
         />
       </div>
-      <CheckBox label="Currently work here"  />
+      <CheckBox label="Currently work here" />
       <Button className='py-6' themeColor='primary' variant='solid'>
         Next
       </Button>

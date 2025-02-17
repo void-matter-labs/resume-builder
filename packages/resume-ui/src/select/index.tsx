@@ -1,5 +1,5 @@
 import { ComponentPropsWithData } from "@resume/utility-types";
-import { MouseEvent, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 import { useClickAway } from "@resume/hooks"
 
@@ -9,9 +9,8 @@ export interface SelectOption {
 }
 
 export interface SelectProps extends
-    ComponentPropsWithData<'select'>,
-    Omit<VariantProps<typeof select>, 'hasIcon'>
-{
+    ComponentPropsWithData<'input'>,
+    Omit<VariantProps<typeof select>, 'hasIcon'> {
     placeholder?: string;
     options: SelectOption[];
     endIcon?: ReactNode;
@@ -49,14 +48,14 @@ export default function Select({
 }: Readonly<SelectProps>) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<SelectOption | null>(null);
-    const ref = useClickAway<HTMLDivElement>(() => setIsOpen(false)); 
+    const ref = useClickAway<HTMLDivElement>(() => setIsOpen(false));
 
     const handleSelect = (option: SelectOption) => {
         setSelectedOption(option);
         setIsOpen(false);
     };
 
-    const handleInputClick = (e: MouseEvent<HTMLInputElement,MouseEvent>) => {
+    const handleInputClick = () => {
         setIsOpen((prev) => !prev);
     }
 

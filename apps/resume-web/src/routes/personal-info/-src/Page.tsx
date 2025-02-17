@@ -1,6 +1,5 @@
 import { useNavigate } from '@tanstack/react-router';
 import { Form, PersonalInfo } from './components/Form';
-import { wait } from '@utils/wait';
 import { use } from 'react';
 import { CacheContext, CacheKeys } from '@providers/globalCache';
 import { useStep } from '@signals/progress';
@@ -24,8 +23,6 @@ export const Page = () => {
     }
 
     cache.getElement(CacheKeys.PersonalInfo)?.fromData(parsedData)
-
-    await wait(1000)
 
     setStep(CacheKeys.PersonalInfo)
 
