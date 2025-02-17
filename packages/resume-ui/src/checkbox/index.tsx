@@ -3,11 +3,12 @@ import { ReactNode } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 
 export interface CheckboxProps extends
-    ComponentPropsWithData<'input'>,
+    Omit<ComponentPropsWithData<'input'>, 'size'>,
     Omit<VariantProps<typeof checkbox>, 'size'> {
     label?: ReactNode;
     size?: 'sm' | 'md' | 'lg';
     type?: 'checkbox' | 'radio';
+    classNameResolver?: typeof checkbox;
 }
 
 const base = 'border-placeholder rounded-sm cursor-pointer';
@@ -34,21 +35,21 @@ export default function Checkbox({
     return (
         <label className="flex items-center gap-3 relative">
             <input
-            type={type}
-            className={`${classNameResolver({ className, size })} peer border border-solid transition-all`}
-            {...props}
+                type={type}
+                className={`${classNameResolver({ className, size })} peer border border-solid transition-all`}
+                {...props}
             />
             <svg
-            className={`hidden peer-checked:block absolute transition-all ${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-7 h-7' : 'w-5 h-5'} text-white`}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+                className={`hidden peer-checked:block absolute transition-all ${size === 'sm' ? 'w-3 h-3' : size === 'lg' ? 'w-7 h-7' : 'w-5 h-5'} text-white`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
             >
-            <path d="M5 12l5 5L20 7" />
+                <path d="M5 12l5 5L20 7" />
             </svg>
             {label && <span>{label}</span>}
         </label>

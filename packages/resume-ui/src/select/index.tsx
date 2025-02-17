@@ -1,5 +1,5 @@
 import { ComponentPropsWithData } from "@resume/utility-types";
-import { MouseEvent, ReactNode, useState } from "react";
+import { ReactNode, useState } from "react";
 import { tv, VariantProps } from "tailwind-variants";
 import { useClickAway } from "@resume/hooks"
 
@@ -9,9 +9,8 @@ export interface SelectOption {
 }
 
 export interface SelectProps extends
-    ComponentPropsWithData<'select'>,
-    Omit<VariantProps<typeof select>, 'hasIcon'>
-{
+    ComponentPropsWithData<'input'>,
+    Omit<VariantProps<typeof select>, 'hasIcon'> {
     placeholder?: string;
     options: SelectOption[];
     endIcon?: ReactNode;
@@ -49,14 +48,14 @@ export default function Select({
 }: Readonly<SelectProps>) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<SelectOption | null>(null);
-    const ref = useClickAway<HTMLDivElement>(() => setIsOpen(false)); 
+    const ref = useClickAway<HTMLDivElement>(() => setIsOpen(false));
 
     const handleSelect = (option: SelectOption) => {
         setSelectedOption(option);
         setIsOpen(false);
     };
 
-    const handleInputClick = (e: MouseEvent<HTMLInputElement,MouseEvent>) => {
+    const handleInputClick = () => {
         setIsOpen((prev) => !prev);
     }
 
@@ -64,13 +63,13 @@ export default function Select({
         <div className="relative" ref={ref}>
             {label && forId && <label htmlFor={forId} className="block mb-2">{label}</label>}
             <input
+                {...props}
                 id={forId}
                 readOnly
                 value={selectedOption ? selectedOption.label : ''}
                 placeholder={placeholder}
                 className={`${className ?? ''} ${base} ${classNameResolver({ className, hasIcon: !!endIcon, isOpen })}`}
                 onClick={handleInputClick}
-                {...props}
             />
             {endIcon && <span className="absolute right-4 bottom-3 transform -translate-y-1/2">{endIcon}</span>}
             <ul className={`absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10 transition-opacity duration-200 max-h-[10.5rem] overflow-y-auto ${isOpen ? 'opacity-100' : ' opacity-0 pointer-events-none'}`}>
