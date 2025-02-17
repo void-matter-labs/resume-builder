@@ -63,13 +63,13 @@ export default function Select({
         <div className="relative" ref={ref}>
             {label && forId && <label htmlFor={forId} className="block mb-2">{label}</label>}
             <input
-                {...props}
                 id={forId}
                 readOnly
                 value={selectedOption ? selectedOption.label : ''}
                 placeholder={placeholder}
                 className={`${className ?? ''} ${base} ${classNameResolver({ className, hasIcon: !!endIcon, isOpen })}`}
                 onClick={handleInputClick}
+                {...props}
             />
             {endIcon && <span className="absolute right-4 bottom-3 transform -translate-y-1/2">{endIcon}</span>}
             <ul className={`absolute mt-1 w-full bg-white border border-placeholder rounded-sm shadow-lg z-10 transition-opacity duration-200 max-h-[10.5rem] overflow-y-auto ${isOpen ? 'opacity-100' : ' opacity-0 pointer-events-none'}`}>
