@@ -1,8 +1,9 @@
 import { use, useEffect, useRef, useState } from 'react'
 import { Button } from '@resume/ui'
 import { createFileRoute } from '@tanstack/react-router'
-import { CacheContext } from '@providers/globalCache'
+import { CacheContext, CacheKeys } from '@providers/globalCache'
 import { DownloadIcon } from '@resume/icons'
+import { Cache } from '@services/Cache.types'
 
 const worker = new Worker(new URL('./-src/worker.ts', import.meta.url), { type: 'module' })
 
@@ -10,10 +11,40 @@ export const Route = createFileRoute('/pdf/')({
   component: RouteComponent,
 })
 
+// TODO: Rethink, each section have to manage its validations
+function isCacheComplete(cache: Cache<CacheKeys>): boolean {
+  const cacheData = cache.dehydrate();
+  const personalInfo = cacheData[CacheKeys.PersonalInfo];
+  const education = cacheData[CacheKeys.Education];
+  const experience = cacheData[CacheKeys.Experience];
+  const technicalSkills = cacheData[CacheKeys.TechnicalSkills];
+  const contactInfo = cacheData[CacheKeys.ContactInfo];
+
+  return Boolean(
+    personalInfo?.name &&
+    personalInfo?.address &&
+    personalInfo?.city &&
+    personalInfo?.email &&
+    personalInfo?.profession &&
+    personalInfo?.state &&
+    education?.length &&
+    experience?.length &&
+    technicalSkills?.skillList?.length &&
+    contactInfo?.phoneNumber &&
+    contactInfo?.linkedInProfile &&
+    contactInfo?.twitterProfile &&
+    contactInfo?.githubProfile &&
+    contactInfo?.portfolioLink
+  );
+}
+
+
 function RouteComponent() {
   const [hasFinished, setHasFinished] = useState(true)
   const anchorRef = useRef<HTMLAnchorElement | null>(null);
   const cache = use(CacheContext)
+
+  const isComplete = isCacheComplete(cache);
 
   useEffect(() => {
     worker.onmessage = (event) => {
@@ -52,7 +83,7 @@ function RouteComponent() {
       </p>
       <Button
         gap={2}
-        disabled={!hasFinished}
+        disabled={!hasFinished || !isComplete}
         onClick={handleClick}
         themeColor='primary'
         variant='solid'
