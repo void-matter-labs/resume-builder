@@ -20,7 +20,7 @@ describe('ResumeGenerator', async () => {
       "education": [],
       experience: [],
       projects: [],
-      skills: []
+      "technical-skills": []
     })
 
     const stream = createWriteStream('test.docx')
