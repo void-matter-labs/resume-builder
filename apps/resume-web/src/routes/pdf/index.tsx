@@ -2,6 +2,7 @@ import { use, useEffect, useRef, useState } from 'react'
 import { Button } from '@resume/ui'
 import { createFileRoute } from '@tanstack/react-router'
 import { CacheContext } from '@providers/globalCache'
+import { DownloadIcon } from '@resume/icons'
 
 const worker = new Worker(new URL('./-src/worker.ts', import.meta.url), { type: 'module' })
 
@@ -43,11 +44,23 @@ function RouteComponent() {
     })
   }
 
-  return <div className='relative left-16'>
-    <Button disabled={!hasFinished} onClick={handleClick} themeColor='primary' variant='solid'>
-      Create pdf
-    </Button>
-    <a ref={anchorRef} hidden download='resume.pdf' />
-  </div>
-
+  return (
+    <div className="relative left-16 flex flex-col items-center justify-center min-h-screen max-w-md mx-auto px-4">
+      <h2 className="text-2xl font-bold mb-4">Congratulations!</h2>
+      <p className="text-lg mb-4 text-gray-700 text-center">
+        Your resume is awesome ready for download. Get it in DOCX format.
+      </p>
+      <Button
+        gap={2}
+        disabled={!hasFinished}
+        onClick={handleClick}
+        themeColor='primary'
+        variant='solid'
+        endIcon={<DownloadIcon />}
+      >
+        Download
+      </Button>
+      <a ref={anchorRef} hidden download='resume.docx' />
+    </div>
+  )
 }
