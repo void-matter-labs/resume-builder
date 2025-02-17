@@ -59,7 +59,7 @@ jobs:
           - Trigger event: ${{ github.event_name }}
  
           Technical details:
-          - Storybook path: apps/docs
+          - App path: apps/resume-web
           - Node.js: v22
           - Package manager: pnpm@9.12.2"
           
