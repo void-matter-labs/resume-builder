@@ -1,30 +1,52 @@
-import { PersonIcon, PersonWithEditIcon } from "@resume/icons"
-import { Button, Sidebar } from "@resume/ui"
-import { useLocation } from "@tanstack/react-router"
 import { useState } from "react"
+import { useLocation } from "@tanstack/react-router"
+import { Certification, Contact, Education, PersonIcon, PersonWithEditIcon, TechnicalSkills } from "@resume/icons"
+import { Button, Sidebar } from "@resume/ui"
 
+import { ProgressBar } from "./ProgressBar"
+
+const sideBarButtons = [
+  {
+    label: 'Personal Info',
+    Icon: PersonIcon,
+    navigateTo: '/personal-info'
+  },
+  {
+    label: "Experience",
+    Icon: PersonWithEditIcon,
+    navigateTo: '/experience'
+  },
+  {
+    label: "Technical Skills",
+    Icon: TechnicalSkills,
+    navigateTo: '/technical-skills'
+  },
+  {
+    label: "Education",
+    Icon: Education,
+    navigateTo: '/education'
+  },
+  {
+    label: "Contact Information",
+    Icon: Contact,
+    navigateTo: '/contact-info'
+  },
+  {
+    label: "Certification",
+    Icon: Certification,
+    navigateTo: '/certification'
+  }
+]
 
 export const StepSidebar = () => {
-  const [ steps ] = useState<Record<string, number>>(()=>( {
+  const [steps] = useState<Record<string, number>>(() => ({
     'personal-info': 0,
     'experience': 1,
-    'technical-skills': 2
+    'technical-skills': 2,
+    'education': 3,
+    'contact-info': 4,
+    'certification': 5,
   }))
-
-  const [sideBarButtons] = useState(()=>[
-    {
-      label: 'Personal Info',
-      Icon: PersonIcon,
-    },
-    {
-      label: "Experience",
-      Icon: PersonWithEditIcon
-    },
-    {
-      label: "Technical Skills",
-      Icon: PersonIcon
-    }
-  ])
 
   // This seems to be a useEffect and a state update,
   // TODO: try to use useSyncExternalStore
@@ -40,8 +62,10 @@ export const StepSidebar = () => {
     {
       sideBarButtons.map(({
         Icon,
-        label
+        label,
+        navigateTo
       }, index) => <Button
+        data-navigate-to={navigateTo}
         ejectPadding
         fullWidth
         themeColor={steps[pathname.substring(1)] === index ? 'primaryStep' : undefined}
@@ -54,5 +78,6 @@ export const StepSidebar = () => {
           {label}
         </Button>)
     }
+    <ProgressBar />
   </Sidebar>
 }
