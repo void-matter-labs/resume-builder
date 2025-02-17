@@ -15,12 +15,12 @@ export const Page = () => {
 
   const action = async (data: FormData) => {
     const parsedData: PersonalInfo = {
-      defaultFullName: String(data.get('full-name')),
-      defaultAddress: String(data.get('address')),
-      defaultCity: String(data.get('city')),
-      defaultEmail: String(data.get('email')),
-      defaultProfession: String(data.get('profession')),
-      defaultState: String(data.get('state')),
+      name: String(data.get('full-name')),
+      address: String(data.get('address')),
+      city: String(data.get('city')),
+      email: String(data.get('email')),
+      profession: String(data.get('profession')),
+      state: String(data.get('state')),
     }
 
     cache.getElement(CacheKeys.PersonalInfo)?.fromData(parsedData)
