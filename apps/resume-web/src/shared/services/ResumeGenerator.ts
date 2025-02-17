@@ -1,8 +1,8 @@
 import { CacheKeys } from "@providers/globalCache";
-import { Document, Paragraph, TextRun, HeadingLevel } from "docx";
+import { Document, Paragraph, TextRun, HeadingLevel, AlignmentType } from "docx";
 
-interface ResumeGeneratorData {
-  [CacheKeys.PersonalInfo]: {
+export interface ResumeGeneratorData {
+  [CacheKeys.PersonalInfo]?: {
     name: string;
     address: string;
     city: string;
@@ -10,23 +10,28 @@ interface ResumeGeneratorData {
     profession: string;
     state: string;
   },
-  [CacheKeys.Education]: {
+  [CacheKeys.Education]?: {
     school: string;
     degree: string;
     startDate: string;
     endDate: string;
   }[],
-  [CacheKeys.Experience]: {
+  [CacheKeys.Experience]?: {
     company: string;
     position: string;
     startDate: string;
     endDate: string;
   }[],
-  [CacheKeys.TechnicalSkills]: string[],
-  [CacheKeys.Projects]: {
-    name: string;
-    description: string;
-  }[]
+  [CacheKeys.TechnicalSkills]?: {
+    skillList: string[];
+  },
+  [CacheKeys.ContactInfo]?: {
+    phoneNumber: string;
+    linkedInProfile: string;
+    twitterProfile: string;
+    githubProfile: string;
+    portfolioLink: string;
+  }
 }
 
 export class ResumeGenerator {
@@ -45,7 +50,7 @@ export class ResumeGenerator {
               alignment: 'center',
               children: [
                 new TextRun({
-                  text: this.data[CacheKeys.PersonalInfo].name,
+                  text: this.data[CacheKeys.PersonalInfo]?.name,
                   bold: true,
                   size: 32,
                   color: '000000'
@@ -54,15 +59,33 @@ export class ResumeGenerator {
             }),
             new Paragraph({
               children: [
-                new TextRun(this.data[CacheKeys.PersonalInfo].city),
+                new TextRun(this.data[CacheKeys.PersonalInfo]?.city ?? ''),
                 new TextRun(', '),
-                new TextRun(this.data[CacheKeys.PersonalInfo].state),
+                new TextRun(this.data[CacheKeys.PersonalInfo]?.state ?? ''),
                 new TextRun(' | '),
-                new TextRun(this.data[CacheKeys.PersonalInfo].email),
+                new TextRun(this.data[CacheKeys.ContactInfo]?.phoneNumber ?? ''),
+                new TextRun(' | '),
+                new TextRun(this.data[CacheKeys.ContactInfo]?.linkedInProfile ?? ''),
+                new TextRun(' | '),
+                new TextRun(this.data[CacheKeys.PersonalInfo]?.email ?? ''),
+              ],
+              alignment: AlignmentType.CENTER
+            }),
+            new Paragraph({
+              heading: HeadingLevel.HEADING_2,
+              children: [
+                new TextRun('Skills'),
+              ]
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: this.data[CacheKeys.TechnicalSkills]?.skillList.join(', '),
+                }),
               ]
             })
-          ]
-        }
+          ],
+        },
       ]
     })
 
