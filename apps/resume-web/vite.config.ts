@@ -6,7 +6,7 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 import tsconfigPaths from 'vite-tsconfig-paths'
 
 // https://vite.dev/config/
-export default defineConfig(({ mode })=>{
+export default defineConfig(({ mode }) => {
   const isTest = mode === 'test';
 
   return {
@@ -16,4 +16,6 @@ export default defineConfig(({ mode })=>{
       react(),
       tailwindcss()
     ],
-  }})
+    base: '/resume-builder-gh-pages/',
+  }
+})
