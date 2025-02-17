@@ -30,9 +30,11 @@ export const Page = () => {
 
   const action = async (data: FormData) => {
     const selectedSkills = Object.fromEntries(data.entries())
+    const skillList = Object.values(selectedSkills)
 
     cache.getElement(CacheKeys.TechnicalSkills)?.fromData({
-      selectedSkills
+      selectedSkills,
+      skillList
     })
 
     setStep(CacheKeys.TechnicalSkills)
