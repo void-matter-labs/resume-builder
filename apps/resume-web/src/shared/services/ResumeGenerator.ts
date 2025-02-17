@@ -1,4 +1,4 @@
-import { CacheKeys } from "@providers/globalCache";
+import { CacheKeys } from "../providers/globalCache";
 import { Document, Paragraph, TextRun, HeadingLevel, AlignmentType } from "docx";
 
 export interface ResumeGeneratorData {

@@ -1,9 +1,8 @@
+import { useState } from "react"
+import { useLocation } from "@tanstack/react-router"
 import { Certification, Contact, Education, PersonIcon, PersonWithEditIcon, TechnicalSkills } from "@resume/icons"
-
-import { MouseEvent, useCallback, useState } from "react"
-
 import { Button, Sidebar } from "@resume/ui"
-import { useLocation, useNavigate } from "@tanstack/react-router"
+
 import { ProgressBar } from "./ProgressBar"
 
 const sideBarButtons = [
@@ -49,21 +48,9 @@ export const StepSidebar = () => {
     'certification': 5,
   }))
 
-
-  const navigate = useNavigate({
-  })
-
   // This seems to be a useEffect and a state update,
   // TODO: try to use useSyncExternalStore
   const { pathname } = useLocation();
-
-  const handleClick = useCallback(async (event: MouseEvent<HTMLElement>) => {
-    const { navigateTo } = event.currentTarget.dataset
-
-    await navigate({
-      to: navigateTo
-    })
-  }, [])
 
   return <Sidebar
     sidebarInnerContainerProps={{
@@ -79,7 +66,6 @@ export const StepSidebar = () => {
         navigateTo
       }, index) => <Button
         data-navigate-to={navigateTo}
-        onClick={handleClick}
         ejectPadding
         fullWidth
         themeColor={steps[pathname.substring(1)] === index ? 'primaryStep' : undefined}

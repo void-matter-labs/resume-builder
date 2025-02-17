@@ -1,7 +1,7 @@
-import { CacheKeys } from '@providers/globalCache';
+import { CacheKeys } from '../../../shared/providers/globalCache';
 import { Packer } from 'docx'
 import { PersonalInfo } from '../../personal-info/-src/components/Form';
-import { ResumeGenerator, ResumeGeneratorData } from '@services/ResumeGenerator';
+import { ResumeGenerator, ResumeGeneratorData } from '../../../shared/services/ResumeGenerator';
 
 interface DehydratedCacheData {
   [CacheKeys.PersonalInfo]: PersonalInfo
