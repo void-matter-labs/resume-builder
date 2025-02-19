@@ -31,6 +31,9 @@ export interface ResumeGeneratorData {
     twitterProfile: string;
     githubProfile: string;
     portfolioLink: string;
+  },
+  [CacheKeys.Certification]?: {
+    certifications: string[];
   }
 }
 
@@ -82,6 +85,25 @@ export class ResumeGenerator {
                 new TextRun({
                   text: this.data[CacheKeys.TechnicalSkills]?.skillList.join(', '),
                 }),
+              ]
+            }),
+            new Paragraph({
+              heading: HeadingLevel.HEADING_2,
+              children: [
+                new TextRun('Education')
+              ]
+            }),
+            new Paragraph({
+              heading: HeadingLevel.HEADING_2,
+              children: [
+                new TextRun('Certification'),
+              ]
+            }),
+            new Paragraph({
+              children: [
+                new TextRun({
+                  text: this.data[CacheKeys.Certification]?.certifications.join(', ')
+                })
               ]
             })
           ],

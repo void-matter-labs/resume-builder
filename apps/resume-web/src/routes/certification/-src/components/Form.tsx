@@ -2,6 +2,20 @@ import { useState } from "react";
 import { Button, LabeledTextInput } from "@resume/ui";
 import { ComponentProps } from "react";
 import { AddCircle } from "@resume/icons";
+import { useFormStatus } from "react-dom";
+
+const FormButton = () => {
+    const {
+      pending
+    } = useFormStatus();
+    return <Button disabled={pending} className='py-6' themeColor='primary' variant='solid'>
+      Submit
+    </Button>
+  }
+
+export interface CertificationInfo {
+    certifications?: string[]
+}
 
 export const Form = (props: ComponentProps<'form'>) => {
     const [certificationCount, setCertificationCount] = useState(1);
@@ -29,18 +43,16 @@ export const Form = (props: ComponentProps<'form'>) => {
             {Array.from({ length: certificationCount }, (_, index) => (
                 <LabeledTextInput
                     key={index}
-                    label={`Certification #${index + 1}`}
-                    placeholder={`E.g. Certification ${index + 1}`}
-                    inputId={`certification-${index + 1}`}
-                    name={`certification-${index + 1}`}
+                    label={`Certification #${++index}`}
+                    placeholder={`E.g. Certification ${++index}`}
+                    inputId={`certification-${++index}`}
+                    name={`certification-${++index}`}
                 />
             ))}
             <Button className='py-2 flex items-center gap-2 font-normal' type="button" onClick={addCertification} startIcon={<AddCircle />}>
                 Add Certification / License
             </Button>
-            <Button className='py-6' themeColor='primary' variant='solid' type="submit">
-                Submit
-            </Button>
+            <FormButton />
         </form>
     );
 };
