@@ -2,6 +2,26 @@ import { ArrowDown } from "@resume/icons"
 import { Button, LabeledTextInput, Select } from "@resume/ui"
 import { ComponentProps } from "react"
 import { selectMonths, selectYears } from "../data/educationSelectData"
+import { useFormStatus } from "react-dom"
+
+const FormButton = () => {
+    const {
+      pending
+    } = useFormStatus();
+    return <Button disabled={pending} className='py-6' themeColor='primary' variant='solid'>
+      Next
+    </Button>
+  }
+  
+export interface EducationInfo {
+    schoolName?: string;
+    schoolLocation?: string;
+    degreeProgram?: string;
+    fieldOfStudy?: string;
+    graduation?: string;
+    graduationMonth?: string;
+    graduationYear?: string;
+}
 
 export const Form = (props: ComponentProps<'form'>) => {
     return (
@@ -52,9 +72,7 @@ export const Form = (props: ComponentProps<'form'>) => {
             />
             <Select label="Graduation Month" placeholder="MM" forId="gradutation-month" options={selectMonths} endIcon={<ArrowDown />}/>
             <Select label="Graduation Year" placeholder="YY" forId="gradutation-year" options={selectYears} endIcon={<ArrowDown />}/>
-            <Button className='py-6' themeColor='primary' variant='solid'>
-                Next
-            </Button>
+            <FormButton />
         </form>
     )
 }

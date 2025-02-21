@@ -23,11 +23,11 @@ export const Page = ()=>{
       finishDate: String(data.get('finishDate'))
     }
 
-    cache.getElement(CacheKeys.PersonalInfo)?.fromData(parsedData)
+    cache.getElement(CacheKeys.Experience)?.fromData(parsedData)
 
     await wait(1000)
 
-    setStep(CacheKeys.PersonalInfo)
+    setStep(CacheKeys.Experience)
 
     await navigate({to: '/technical-skills'})
   }
