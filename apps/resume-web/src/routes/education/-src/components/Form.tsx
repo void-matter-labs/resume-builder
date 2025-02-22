@@ -6,13 +6,13 @@ import { useFormStatus } from "react-dom"
 
 const FormButton = () => {
     const {
-      pending
+        pending
     } = useFormStatus();
     return <Button disabled={pending} className='py-6' themeColor='primary' variant='solid'>
-      Next
+        Next
     </Button>
-  }
-  
+}
+
 export interface EducationInfo {
     schoolName?: string;
     schoolLocation?: string;
@@ -70,8 +70,8 @@ export const Form = (props: ComponentProps<'form'>) => {
                 inputId='graduation'
                 name="graduation"
             />
-            <Select label="Graduation Month" placeholder="MM" forId="gradutation-month" options={selectMonths} endIcon={<ArrowDown />}/>
-            <Select label="Graduation Year" placeholder="YY" forId="gradutation-year" options={selectYears} endIcon={<ArrowDown />}/>
+            <Select label="Graduation Month" placeholder="MM" name="gradutation-month" forId="gradutation-month" options={selectMonths} endIcon={<ArrowDown />} />
+            <Select label="Graduation Year" placeholder="YY" name="gradutation-year" forId="gradutation-year" options={selectYears} endIcon={<ArrowDown />} />
             <FormButton />
         </form>
     )
