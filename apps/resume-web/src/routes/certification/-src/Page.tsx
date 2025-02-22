@@ -3,12 +3,15 @@ import { Form, CertificationInfo } from "./components/Form";
 import { use } from 'react';
 import { CacheContext, CacheKeys } from '@providers/globalCache';
 import { wait } from '@utils/wait';
+import { useStep } from "@signals/progress";
 
 export const Page = () => {
   const navigate = useNavigate({
     from: '/certification'
   });
   const cache = use(CacheContext);
+
+  const setState = useStep()
 
   const action = async (data: FormData) => {
     const certifications: string[] = [];
@@ -23,6 +26,8 @@ export const Page = () => {
     };
 
     cache.getElement(CacheKeys.Certification)?.fromData(parsedData);
+
+    setState(CacheKeys.Certification)
 
     await wait(1000);
 

@@ -3,12 +3,15 @@ import { Form, EducationInfo } from "./components/Form"
 import { use } from 'react';
 import { CacheContext, CacheKeys } from '@providers/globalCache';
 import { wait } from '@utils/wait';
+import { useStep } from "@signals/progress";
 
 export const Page = () => {
   const navigate = useNavigate({
     from: '/education'
   });
   const cache = use(CacheContext);
+
+  const setStep = useStep()
 
   const action = async (data: FormData) => {
     const parsedData: EducationInfo = {
@@ -22,6 +25,8 @@ export const Page = () => {
     };
 
     cache.getElement(CacheKeys.Education)?.fromData(parsedData);
+
+    setStep(CacheKeys.Education)
 
     await wait(1000);
 
