@@ -23,7 +23,6 @@ export const Page = () => {
       graduationMonth: String(data.get('gradutation-month')),
       graduationYear: String(data.get('gradutation-year')),
     };
-    console.log("🚀 ~ action ~ parsedData:", parsedData)
 
     cache.getElement(CacheKeys.Education)?.fromData(parsedData);
 
