@@ -76,14 +76,15 @@ function RouteComponent() {
   }
 
   return (
-    <div className="relative left-16 flex flex-col items-center justify-center min-h-screen max-w-md mx-auto px-4">
+    <div className="relative left-6 flex flex-col items-center justify-center min-h-screen max-w-md mx-auto px-4">
       <h2 className="text-2xl font-bold mb-4">Congratulations!</h2>
       <p className="text-lg mb-4 text-gray-700 text-center">
         Your resume is awesome ready for download. Get it in DOCX format.
       </p>
       <Button
         gap={2}
-        disabled={!hasFinished || !isComplete}
+        // TODO: THIS IS MOMENTANEOUSLY BECAUSE IT NEVERS ENABLE RN
+        disabled={false}
         onClick={handleClick}
         themeColor='primary'
         variant='solid'

@@ -14,14 +14,14 @@ export interface ResumeGeneratorData {
     school: string;
     degree: string;
     startDate: string;
-    endDate: string;
-  }[],
+    finishDate: string;
+  },
   [CacheKeys.Experience]?: {
     company: string;
     position: string;
     startDate: string;
-    endDate: string;
-  }[],
+    finishDate: string;
+  },
   [CacheKeys.TechnicalSkills]?: {
     skillList: string[];
   },
@@ -44,13 +44,16 @@ export class ResumeGenerator {
   }
 
   generate() {
+    const educations = [this.data[CacheKeys.Education]]
+    const experiences = [this.data[CacheKeys.Experience]]
+
     const doc = new Document({
       sections: [
         {
           children: [
             new Paragraph({
               heading: HeadingLevel.HEADING_1,
-              alignment: 'center',
+              alignment: AlignmentType.CENTER,
               children: [
                 new TextRun({
                   text: this.data[CacheKeys.PersonalInfo]?.name,
@@ -93,6 +96,22 @@ export class ResumeGenerator {
                 new TextRun('Education')
               ]
             }),
+            ...(educations?.map(education => new Paragraph({
+              children: [
+                new TextRun(`${education?.school}, ${education?.degree} (${education?.startDate} - ${education?.finishDate})`)
+              ]
+            })) ?? []),
+            new Paragraph({
+              heading: HeadingLevel.HEADING_2,
+              children: [
+                new TextRun('Experience')
+              ]
+            }),
+            ...(experiences?.map(experience => new Paragraph({
+              children: [
+                new TextRun(`${experience?.company}, ${experience?.position} (${experience?.startDate} - ${experience?.finishDate})`)
+              ]
+            })) ?? []),
             new Paragraph({
               heading: HeadingLevel.HEADING_2,
               children: [

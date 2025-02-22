@@ -19,15 +19,15 @@ export const Page = ()=>{
       address: String(data.get('address')),
       employer: String(data.get('employer')),
       role: String(data.get('role')),
-      startDate: String(data.get('startDate')),
-      finishDate: String(data.get('finishDate'))
+      startDate: String(data.get('start-date')),
+      finishDate: String(data.get('finish-date'))
     }
 
-    cache.getElement(CacheKeys.PersonalInfo)?.fromData(parsedData)
+    cache.getElement(CacheKeys.Experience)?.fromData(parsedData)
 
     await wait(1000)
 
-    setStep(CacheKeys.PersonalInfo)
+    setStep(CacheKeys.Experience)
 
     await navigate({to: '/technical-skills'})
   }

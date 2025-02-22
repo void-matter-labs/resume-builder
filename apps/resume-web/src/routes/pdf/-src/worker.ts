@@ -14,6 +14,8 @@ self.addEventListener('message', async (event) => {
 
   const cacheData: DehydratedCacheData = event.data.cacheData;
 
+  console.log(cacheData)
+
   const resumeGenerator = new ResumeGenerator(cacheData as ResumeGeneratorData)
 
   const doc = resumeGenerator.generate()
