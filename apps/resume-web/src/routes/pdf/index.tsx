@@ -1,9 +1,8 @@
 import { use, useEffect, useRef, useState } from 'react'
 import { Button } from '@resume/ui'
 import { createFileRoute } from '@tanstack/react-router'
-import { CacheContext, CacheKeys } from '@providers/globalCache'
+import { CacheContext } from '@providers/globalCache'
 import { Download } from '@resume/icons'
-import { Cache } from '@services/Cache.types'
 
 const worker = new Worker(new URL('./-src/worker.ts', import.meta.url), { type: 'module' })
 
@@ -12,30 +11,30 @@ export const Route = createFileRoute('/pdf/')({
 })
 
 // TODO: Rethink, each section have to manage its validations
-function isCacheComplete(cache: Cache<CacheKeys>): boolean {
-  const cacheData = cache.dehydrate();
-  const requiredKeys = [
-    [CacheKeys.PersonalInfo, 'name'],
-    [CacheKeys.PersonalInfo, 'address'],
-    [CacheKeys.PersonalInfo, 'city'],
-    [CacheKeys.PersonalInfo, 'email'],
-    [CacheKeys.PersonalInfo, 'profession'],
-    [CacheKeys.PersonalInfo, 'state'],
-    [CacheKeys.Education],
-    [CacheKeys.Experience],
-    [CacheKeys.TechnicalSkills, 'skillList'],
-    [CacheKeys.ContactInfo, 'phoneNumber'],
-    [CacheKeys.ContactInfo, 'linkedInProfile'],
-    [CacheKeys.ContactInfo, 'twitterProfile'],
-    [CacheKeys.ContactInfo, 'githubProfile'],
-    [CacheKeys.ContactInfo, 'portfolioLink']
-  ];
+// function isCacheComplete(cache: Cache<CacheKeys>): boolean {
+//   const cacheData = cache.dehydrate();
+//   const requiredKeys = [
+//     [CacheKeys.PersonalInfo, 'name'],
+//     [CacheKeys.PersonalInfo, 'address'],
+//     [CacheKeys.PersonalInfo, 'city'],
+//     [CacheKeys.PersonalInfo, 'email'],
+//     [CacheKeys.PersonalInfo, 'profession'],
+//     [CacheKeys.PersonalInfo, 'state'],
+//     [CacheKeys.Education],
+//     [CacheKeys.Experience],
+//     [CacheKeys.TechnicalSkills, 'skillList'],
+//     [CacheKeys.ContactInfo, 'phoneNumber'],
+//     [CacheKeys.ContactInfo, 'linkedInProfile'],
+//     [CacheKeys.ContactInfo, 'twitterProfile'],
+//     [CacheKeys.ContactInfo, 'githubProfile'],
+//     [CacheKeys.ContactInfo, 'portfolioLink']
+//   ];
 
-  return requiredKeys.every(([key, subKey]) => {
-    const value = cacheData[key as CacheKeys];
-    return subKey ? value?.[subKey] : value?.length;
-  });
-}
+//   return requiredKeys.every(([key, subKey]) => {
+//     const value = cacheData[key as CacheKeys];
+//     return subKey ? value?.[subKey] : value?.length;
+//   });
+// }
 
 
 
