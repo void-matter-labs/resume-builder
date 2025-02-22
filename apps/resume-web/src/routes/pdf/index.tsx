@@ -40,7 +40,7 @@ function isCacheComplete(cache: Cache<CacheKeys>): boolean {
 
 
 function RouteComponent() {
-  const [hasFinished, setHasFinished] = useState(true)
+  const [_, setHasFinished] = useState(true)
   const anchorRef = useRef<HTMLAnchorElement | null>(null);
   const cache = use(CacheContext)
 
@@ -83,7 +83,7 @@ function RouteComponent() {
       <Button
         gap={2}
         // TODO: THIS IS MOMENTANEOUSLY BECAUSE IT NEVERS ENABLE RN
-        disabled={hasFinished}
+        disabled={false}
         onClick={handleClick}
         themeColor='primary'
         variant='solid'

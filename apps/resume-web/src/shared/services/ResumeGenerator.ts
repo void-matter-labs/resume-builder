@@ -11,16 +11,22 @@ export interface ResumeGeneratorData {
     state: string;
   },
   [CacheKeys.Education]?: {
-    school: string;
-    degree: string;
-    startDate: string;
-    finishDate: string;
+    degreeProgram: string;
+    fieldOfStudy: string;
+    graduation: string;
+    graduationMonth: string;
+    graduationYear: string;
+    schoolLocation: string;
+    schoolName: string;
   },
   [CacheKeys.Experience]?: {
     company: string;
     position: string;
     startDate: string;
     finishDate: string;
+    address: string;
+    employer: string;
+    role: string;
   },
   [CacheKeys.TechnicalSkills]?: {
     skillList: string[];
@@ -98,7 +104,7 @@ export class ResumeGenerator {
             }),
             ...(educations?.map(education => new Paragraph({
               children: [
-                new TextRun(`${education?.school}, ${education?.degree} (${education?.startDate} - ${education?.finishDate})`)
+                new TextRun(`${education?.schoolName}, ${education?.degreeProgram} (${education?.graduationMonth} - ${education?.graduationYear})`)
               ]
             })) ?? []),
             new Paragraph({
@@ -109,7 +115,7 @@ export class ResumeGenerator {
             }),
             ...(experiences?.map(experience => new Paragraph({
               children: [
-                new TextRun(`${experience?.company}, ${experience?.position} (${experience?.startDate} - ${experience?.finishDate})`)
+                new TextRun(`${experience?.company}, ${experience?.role} (${experience?.startDate} - ${experience?.finishDate})`)
               ]
             })) ?? []),
             new Paragraph({

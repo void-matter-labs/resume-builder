@@ -6,14 +6,14 @@ import { wait } from '@utils/wait';
 import { use } from 'react';
 
 
-export const Page = ()=>{
+export const Page = () => {
   const navigate = useNavigate({
     from: '/experience'
   });
   const setStep = useStep()
   const cache = use(CacheContext)
 
-  const action = async (data: FormData)=>{
+  const action = async (data: FormData) => {
     const parsedData: ExperienceInfo = {
       company: String(data.get('company')),
       address: String(data.get('address')),
@@ -29,7 +29,7 @@ export const Page = ()=>{
 
     setStep(CacheKeys.Experience)
 
-    await navigate({to: '/technical-skills'})
+    await navigate({ to: '/technical-skills' })
   }
 
   return <main>
