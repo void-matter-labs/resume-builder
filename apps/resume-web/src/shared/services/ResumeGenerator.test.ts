@@ -17,8 +17,18 @@ describe('ResumeGenerator', async () => {
         profession: "Software Engineer",
         state: "IL"
       },
-      "education": [],
-      experience: [],
+      "education": {
+        degree: "BS",
+        finishDate: "2020-01-01",
+        startDate: "2016-01-01",
+        school: "Springfield High School",
+      },
+      experience: {
+        company: "ABC Inc",
+        finishDate: "2021-01-01",
+        position: "Software Engineer",
+        startDate: "2020-01-01",
+      },
       "technical-skills": {
         skillList: [
           "React",
@@ -32,6 +42,12 @@ describe('ResumeGenerator', async () => {
         twitterProfile: "https://twitter.com/johndoe",
         githubProfile: "",
         portfolioLink: ""
+      },
+      certification: {
+        certifications: [
+          "Certification 1",
+          "Certification 2"
+        ]
       }
     })
 

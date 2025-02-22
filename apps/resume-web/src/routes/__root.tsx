@@ -22,7 +22,17 @@ function RootComponent() {
       [CacheKeys.ContactInfo, {
         element: new DefaultCacheElement()
       }],
+      [CacheKeys.Education, {
+        element: new DefaultCacheElement()
+      }],
+      [CacheKeys.Experience, {
+        element: new DefaultCacheElement()
+      }],
+      [CacheKeys.Certification, {
+        element: new DefaultCacheElement()
+      }
     ]
+  ]
   ))
 
   return (
