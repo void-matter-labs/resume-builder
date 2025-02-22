@@ -18,12 +18,18 @@ describe('ResumeGenerator', async () => {
         state: "IL"
       },
       "education": {
-        degree: "BS",
-        finishDate: "2020-01-01",
-        startDate: "2016-01-01",
-        school: "Springfield High School",
+        degreeProgram: "BS",
+        fieldOfStudy: "Computer Science",
+        graduation: "2020-01-01",
+        graduationMonth: "January",
+        graduationYear: "2020",
+        schoolLocation: "Springfield, IL",
+        schoolName: "Springfield University"
       },
       experience: {
+        address: "1234 Main St",
+        employer: "John Doe",
+        role: "Software Engineer",
         company: "ABC Inc",
         finishDate: "2021-01-01",
         position: "Software Engineer",
