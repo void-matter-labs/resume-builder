@@ -44,7 +44,6 @@ function RouteComponent() {
   const anchorRef = useRef<HTMLAnchorElement | null>(null);
   const cache = use(CacheContext)
 
-  const isComplete = isCacheComplete(cache);
 
   useEffect(() => {
     worker.onmessage = (event) => {
@@ -84,7 +83,7 @@ function RouteComponent() {
       <Button
         gap={2}
         // TODO: THIS IS MOMENTANEOUSLY BECAUSE IT NEVERS ENABLE RN
-        disabled={false}
+        disabled={hasFinished}
         onClick={handleClick}
         themeColor='primary'
         variant='solid'

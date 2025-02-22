@@ -42,6 +42,12 @@ describe('ResumeGenerator', async () => {
         twitterProfile: "https://twitter.com/johndoe",
         githubProfile: "",
         portfolioLink: ""
+      },
+      certification: {
+        certifications: [
+          "Certification 1",
+          "Certification 2"
+        ]
       }
     })
 
