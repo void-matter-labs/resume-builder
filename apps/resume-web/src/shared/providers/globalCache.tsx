@@ -9,6 +9,7 @@ export const enum CacheKeys {
   TechnicalSkills = 'technical-skills',
   Projects = 'projects',
   ContactInfo = 'contact-info',
+  Certification = 'certification',
 }
 
 export const CacheContext = createContext<Cache<CacheKeys>>(new DefaultCache<CacheKeys>());

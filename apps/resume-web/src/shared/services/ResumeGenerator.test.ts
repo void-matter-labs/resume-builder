@@ -17,8 +17,24 @@ describe('ResumeGenerator', async () => {
         profession: "Software Engineer",
         state: "IL"
       },
-      "education": [],
-      experience: [],
+      "education": {
+        degreeProgram: "BS",
+        fieldOfStudy: "Computer Science",
+        graduation: "2020-01-01",
+        graduationMonth: "January",
+        graduationYear: "2020",
+        schoolLocation: "Springfield, IL",
+        schoolName: "Springfield University"
+      },
+      experience: {
+        address: "1234 Main St",
+        employer: "John Doe",
+        role: "Software Engineer",
+        company: "ABC Inc",
+        finishDate: "2021-01-01",
+        position: "Software Engineer",
+        startDate: "2020-01-01",
+      },
       "technical-skills": {
         skillList: [
           "React",
@@ -32,6 +48,12 @@ describe('ResumeGenerator', async () => {
         twitterProfile: "https://twitter.com/johndoe",
         githubProfile: "",
         portfolioLink: ""
+      },
+      certification: {
+        certifications: [
+          "Certification 1",
+          "Certification 2"
+        ]
       }
     })
 
